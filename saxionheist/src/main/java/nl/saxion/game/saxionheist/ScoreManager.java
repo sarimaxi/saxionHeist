@@ -15,6 +15,9 @@ public class ScoreManager {
     /** Time since last reset **/
     public float totalTime = 0f;
 
+    /** If true score will update **/
+    public boolean processing = true;
+
     static final String FONTNAME = "score-ui";
 
     public ScoreManager() {
@@ -30,14 +33,16 @@ public class ScoreManager {
 
     /** Update the score and draw it to the screen **/
     public void render(float delta) {
+        delta *= (processing ? 1 : 0);
         time += delta;
         totalTime += delta;
 
-        while(time > 1f / modifier) {
-            score += 1;
-            time -= 1f / modifier;
-        }
+        // Calculate and add the amount of points earned since last render call
+        int add = (int) Math.floor(time / (1f / modifier));
+        score += add;
+        time -= add * (1f / modifier);
 
+        // Draw score to screen
         GameApp.startSpriteRendering();
         GameApp.drawText(FONTNAME, "Score: "+score, 0, GameApp.getWorldHeight() - 30,"white");
         GameApp.endSpriteRendering();
@@ -55,5 +60,15 @@ public class ScoreManager {
 
         time = 0f;
         totalTime = 0f;
+    }
+
+    /** Pause score updates **/
+    public void pause() {
+        processing = false;
+    }
+
+    /** Resume score updates **/
+    public void resume() {
+        processing = true;
     }
 }
