@@ -1,10 +1,14 @@
 package nl.saxion.game.saxionheist;
 
+import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
+import java.util.ArrayList;
+
 public class YourGameScreen extends ScalableGameScreen {
     ScoreManager scoreManager = null;
+    ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     public YourGameScreen() {
         super(1280, 720);
@@ -19,10 +23,18 @@ public class YourGameScreen extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
 
+        if (GameApp.isButtonJustPressed(Input.Buttons.LEFT)) {
+            obstacles.add(new Obstacle(1280, 300));
+        }
+
         // Clear
         GameApp.clearScreen();
 
         scoreManager.render(delta);
+
+        for (Obstacle obstacle : obstacles) {
+            obstacle.render(delta);
+        }
     }
 
     @Override
