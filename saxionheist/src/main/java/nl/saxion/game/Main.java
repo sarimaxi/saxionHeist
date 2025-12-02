@@ -1,7 +1,7 @@
 package nl.saxion.game;
 
-import nl.saxion.game.yourgamename.YourGameScreen;
-import nl.saxion.game.yourgamename.MainMenuScreen;
+import nl.saxion.game.saxionheist.YourGameScreen;
+import nl.saxion.game.saxionheist.MainMenuScreen;
 import nl.saxion.gameapp.GameApp;
 
 public class Main {

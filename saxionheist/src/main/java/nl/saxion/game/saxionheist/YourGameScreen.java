@@ -4,9 +4,12 @@ import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
+import java.util.ArrayList;
+
 public class YourGameScreen extends ScalableGameScreen {
     Player player = null;
-
+    ScoreManager scoreManager = null;
+    ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     public YourGameScreen() {
         super(1280, 720);
@@ -15,23 +18,31 @@ public class YourGameScreen extends ScalableGameScreen {
     @Override
     public void show() {
         player = new Player("String",300,400);
-
+        scoreManager = new ScoreManager();
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
+
+        if (GameApp.isButtonJustPressed(Input.Buttons.LEFT)) {
+            obstacles.add(new Obstacle(1280, 300));
+        }
+
+        // Clear
+        GameApp.clearScreen();
+
+        scoreManager.render(delta);
         player.render(delta);
 
-    }
 
-    private String getRandomColor() {
-        int randomIndex = (int)GameApp.random(0, GameApp.getAllColors().length-1);
-        return GameApp.getAllColors()[randomIndex];
+        for (Obstacle obstacle : obstacles) {
+            obstacle.render(delta);
+        }
     }
 
     @Override
     public void hide() {
-
+        scoreManager.dispose();
     }
 }
