@@ -19,5 +19,8 @@ public class Player {
      //   GameApp.drawTexture(textureName,x,y);
 
     }
+    public void whatever(String cheese){
+        System.out.println("hello");
+    }
 }
 
