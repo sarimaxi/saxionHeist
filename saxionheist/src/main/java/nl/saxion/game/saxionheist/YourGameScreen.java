@@ -7,6 +7,7 @@ import nl.saxion.gameapp.screens.ScalableGameScreen;
 import java.util.ArrayList;
 
 public class YourGameScreen extends ScalableGameScreen {
+    Player player = null;
     ScoreManager scoreManager = null;
     ArrayList<Obstacle> obstacles = new ArrayList<>();
 
@@ -16,6 +17,7 @@ public class YourGameScreen extends ScalableGameScreen {
 
     @Override
     public void show() {
+        player = new Player("String",300,400);
         scoreManager = new ScoreManager();
     }
 
@@ -31,6 +33,8 @@ public class YourGameScreen extends ScalableGameScreen {
         GameApp.clearScreen();
 
         scoreManager.render(delta);
+        player.render(delta);
+
 
         for (Obstacle obstacle : obstacles) {
             obstacle.render(delta);
