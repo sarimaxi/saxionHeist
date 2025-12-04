@@ -4,8 +4,8 @@ import com.badlogic.gdx.graphics.Color;
 import nl.saxion.gameapp.GameApp;
 
 public class Obstacle {
-    private float x;
-    private float y;
+    protected float x;
+    protected float y;
     private float speed = 250.0f;
 
     public Obstacle(float x, float y) {
