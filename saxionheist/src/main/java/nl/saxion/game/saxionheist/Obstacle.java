@@ -21,4 +21,8 @@ public class Obstacle {
         GameApp.endShapeRendering();
 
     }
+
+    public float getX() {
+        return x;
+    }
 }
