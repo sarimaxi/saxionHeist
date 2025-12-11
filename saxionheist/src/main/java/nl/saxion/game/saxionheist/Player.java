@@ -32,7 +32,7 @@ public class Player {
         // Apply velocities
         x += velocityX * delta;
         y = Math.max(y + (velocityY * delta), floorHeight);
-
+        
         GameApp.startShapeRenderingFilled();
         GameApp.drawRect(x, y, 32, 32, "red-500");
         GameApp.endShapeRendering();
