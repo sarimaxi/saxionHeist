@@ -10,6 +10,7 @@ public class YourGameScreen extends ScalableGameScreen {
     Player player = null;
     ScoreManager scoreManager = null;
     ObstacleManager obstacleManager = null;
+    ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     public YourGameScreen() {
         super(1280, 720);
@@ -26,13 +27,20 @@ public class YourGameScreen extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
 
-       // Clear
+        if (GameApp.isButtonJustPressed(Input.Buttons.LEFT)) {
+            obstacles.add(new Obstacle(1280, 300));
+        }
+
+        // Clear
         GameApp.clearScreen();
 
-        scoreManager.render(delta);
         player.render(delta);
+        scoreManager.render(delta);
         obstacleManager.render(delta);
 
+        for (Obstacle obstacle : obstacles) {
+            obstacle.render(delta);
+        }
     }
 
     @Override
