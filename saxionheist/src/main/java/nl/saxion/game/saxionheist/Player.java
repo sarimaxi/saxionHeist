@@ -1,5 +1,6 @@
 package nl.saxion.game.saxionheist;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
@@ -15,11 +16,11 @@ public class Player {
 
     boolean isSliding = false;
     float normalHeight = 32f;
-    float slideHeight = 16f;  // half size
+    final float slideHeight = 16f;  // half size
     float currentHeight = normalHeight;
 
     long slideStartTime;
-    long slideDuration = 350; // milliseconds
+    long slideDuration = 700; // milliseconds
 
     private String textureName;
     float x, y; // for the position
@@ -29,31 +30,23 @@ public class Player {
         this.x = x;
         this.y = y;
         // GameApp.addTexture(textureName,"player.png");
+        // -----------------------------
+
     }
+
 
     public void render (float delta) {
         if (GameApp.isKeyJustPressed(Input.Keys.SPACE))
             jump();
 
-        velocityY = Math.max(velocityY - (gravity * delta), -maxFallSpeed);
-
-        // Apply velocities
-        x += velocityX * delta;
-        y = Math.max(y + (velocityY * delta), floorHeight);
+        // START SLIDE
+        if (GameApp.isKeyJustPressed(Input.Keys.DOWN) && isOnGround())
+            startSlide();
 
         GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, 32, "red-500");
+        GameApp.drawRect(x, y, 32, currentHeight, "red-500");
         GameApp.endShapeRendering();
         //   GameApp.drawTexture(textureName,x,y);
-
-        GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, 32, "red-500");
-        GameApp.endShapeRendering();
-        //  GameApp.drawTexture(textureName,x,y);
-
-        // START SLIDE
-        if (GameApp.isKeyJustPressed(Input.Keys.DOWN))
-            startSlide();
 
         // UPDATE SLIDE
         updateSlide();
@@ -71,21 +64,23 @@ public class Player {
         GameApp.endShapeRendering();
     }
 
+    private boolean isOnGround() {
+        return y <= floorHeight;
+    }
+
     // -----------------------------
     // SLIDE LOGIC
     // -----------------------------
     private void startSlide() {
         if (isSliding) return;
-        if (velocityY != 0) return;  // cannot slide in air
 
         isSliding = true;
         slideStartTime = System.currentTimeMillis();
 
         // shrink
-        currentHeight = slideHeight;
+        currentHeight = slideHeight ;
+        System.out.println("slidin");
 
-        // move down so feet stay on the ground
-        y -= (normalHeight - slideHeight);
     }
 
     private void updateSlide() {
@@ -104,15 +99,16 @@ public class Player {
         isSliding = false;
 
         // restore size
-        y += (normalHeight - slideHeight);
         currentHeight = normalHeight;
     }
 
 
     /** Jump **/
     public void jump () {
+        if (!isOnGround()) return;
         velocityY = jumpForce;
     }
+
 
 }
 
