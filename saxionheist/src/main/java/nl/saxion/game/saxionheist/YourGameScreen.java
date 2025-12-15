@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class YourGameScreen extends ScalableGameScreen {
     Player player = null;
     ScoreManager scoreManager = null;
+    ObstacleManager obstacleManager = null;
     ArrayList<Obstacle> obstacles = new ArrayList<>();
 
     public YourGameScreen() {
@@ -19,6 +20,7 @@ public class YourGameScreen extends ScalableGameScreen {
     public void show() {
         player = new Player("String",300,400);
         scoreManager = new ScoreManager();
+        obstacleManager = new ObstacleManager();
     }
 
     @Override
@@ -32,9 +34,9 @@ public class YourGameScreen extends ScalableGameScreen {
         // Clear
         GameApp.clearScreen();
 
-        scoreManager.render(delta);
         player.render(delta);
-
+        scoreManager.render(delta);
+        obstacleManager.render(delta);
 
         for (Obstacle obstacle : obstacles) {
             obstacle.render(delta);
