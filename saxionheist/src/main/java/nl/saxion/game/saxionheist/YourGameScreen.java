@@ -30,7 +30,7 @@ public class YourGameScreen extends ScalableGameScreen {
         if (GameApp.isButtonJustPressed(Input.Buttons.LEFT)) {
             obstacles.add(new Obstacle(1280, 300));
         }
-
+q
         // Clear
         GameApp.clearScreen();
 
