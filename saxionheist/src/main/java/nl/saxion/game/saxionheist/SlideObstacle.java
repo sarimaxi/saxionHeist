@@ -1,27 +1,34 @@
 
 package nl.saxion.game.saxionheist;
+import com.badlogic.gdx.graphics.Color;
 import nl.saxion.gameapp.GameApp;
 import com.badlogic.gdx.math.Rectangle;
 
-import java.awt.*;
-
-public class SlideObstacle {
-
-        private float x;
-        private float y;
-        private float speed = 250.0f;
-
+public class SlideObstacle extends Obstacle {
         private final float width = 32;
         private final float height = 20; // LOW → slide under
+        Player player;
 
-        public SlideObstacle(float x, float y) {
-                this.x = x;
-                this.y = y;
+
+        public SlideObstacle(Player player, float x, float y) {
+            super(x,y);
+            this.player = player;
+            this.speed = 250;
         }
 
-        public void render(float delta, Player player) {
+         @Override
+        public void update(float delta) {
+                x -= speed * delta;
+        }
+
+        @Override
+        public void render(float delta) {
+                super.render(delta);
+
                 // MOVE
                 x -= speed * delta;
+
+
 
                 // COLLISION
                 Rectangle obstacleBox = new Rectangle(x, y, width, height);
@@ -40,7 +47,7 @@ public class SlideObstacle {
 
                 // DRAW
                 GameApp.startShapeRenderingFilled();
-                GameApp.drawRect(x, y, width, height, String.valueOf(Color.BLUE));
+                GameApp.drawRect(x, y, width, height,(Color.BLUE));
                 GameApp.endShapeRendering();
         }
 }

@@ -26,7 +26,7 @@ public class YourGameScreen extends ScalableGameScreen {
         super.render(delta);
 
         if (GameApp.isButtonJustPressed(Input.Buttons.LEFT)) {
-            obstacles.add(new Obstacle(1280, 300));
+            obstacles.add(new SlideObstacle(player,1280, 300));
         }
 
         // Clear
