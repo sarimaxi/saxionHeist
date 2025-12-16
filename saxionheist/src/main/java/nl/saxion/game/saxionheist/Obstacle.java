@@ -6,6 +6,7 @@ import nl.saxion.gameapp.GameApp;
 public class Obstacle {
     protected float x;
     protected float y;
+    
     private float speed = 250.0f;
 
     public Obstacle(float x, float y) {
@@ -20,5 +21,9 @@ public class Obstacle {
         GameApp.drawRect(x, y, 32, 32, Color.RED);
         GameApp.endShapeRendering();
 
+    }
+
+    public float getX() {
+        return x;
     }
 }
