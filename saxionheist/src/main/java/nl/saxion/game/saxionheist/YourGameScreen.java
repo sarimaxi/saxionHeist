@@ -20,7 +20,7 @@ public class YourGameScreen extends ScalableGameScreen {
     public void show() {
         player = new Player("String",300,400);
         scoreManager = new ScoreManager();
-        obstacleManager = new ObstacleManager();
+        obstacleManager = new ObstacleManager(player);
     }
 
     @Override
