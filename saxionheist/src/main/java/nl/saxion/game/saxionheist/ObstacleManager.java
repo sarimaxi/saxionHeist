@@ -54,4 +54,7 @@ public class ObstacleManager {
         currentObstacleSet = newObstacleSet;
         currentObstacleSet.start();
     }
+    public ArrayList<Obstacle> getObstacles() {
+        return obstacles;
+    }
 }

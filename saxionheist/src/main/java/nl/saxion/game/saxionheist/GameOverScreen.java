@@ -8,9 +8,11 @@ public class GameOverScreen {
 
     private boolean active = false;
     private ScoreManager score;
+    private Health health;
 
-    public GameOverScreen(ScoreManager score) {
+    public GameOverScreen(ScoreManager score, Health health) {
         this.score = score;
+        this.health = health;
 
     }
 
@@ -53,7 +55,7 @@ public class GameOverScreen {
         active = false;
         score.reset();
         score.resume();
-        // health.reset(); ← later
+        health.reset();
     }
 
     public boolean isActive() {
