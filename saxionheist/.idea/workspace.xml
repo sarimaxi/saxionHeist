@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="39f6e0eb-dc35-4874-b375-823eb9dec900" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/MainMenuScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/MainMenuScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/ObstacleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/ObstacleManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/YourGameScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/YourGameScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

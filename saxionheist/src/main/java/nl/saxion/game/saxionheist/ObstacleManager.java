@@ -12,20 +12,15 @@ public class ObstacleManager {
             new DoubleJump(this)
     };
 
-    /**
-     * The list of all active obstacles
-     **/
+    //The list of all active obstacles
     public ArrayList<Obstacle> obstacles;
 
-    /**
-     * Reference to the player
-     **/
+    //Reference to the player
     public Player player;
 
     private ObstacleSet currentObstacleSet;
 
     private float lastFloorX = -100;
-    private boolean alternateFloorColor = false;
     private final float floorY = 300 - 32;
 
 
@@ -38,9 +33,8 @@ public class ObstacleManager {
         fillFloorInitially();
     }
 
-    /**
-     * Main update loop: Handles spawning, moving, and drawing.
-     */
+    //Main update loop: Handles spawning, moving, and drawing.
+
     public void render(float delta) {
         // Pick new set if current set has finished
         if (!currentObstacleSet.isActive())
@@ -82,9 +76,7 @@ public class ObstacleManager {
     }
 
     private void addFloorTile(float x) {
-        //using colour atm
-        alternateFloorColor = !alternateFloorColor;
-        obstacles.add(new FloorTile(x, floorY, alternateFloorColor));
+        obstacles.add(new FloorTile(x, floorY, "road"));
     }
 
     private ObstacleSet getRandomObstacleSet() {
