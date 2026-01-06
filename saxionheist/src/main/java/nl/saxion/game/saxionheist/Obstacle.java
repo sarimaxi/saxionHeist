@@ -6,10 +6,12 @@ import nl.saxion.gameapp.GameApp;
 public class Obstacle {
     protected float x;
     protected float y;
-    
+
+    protected final ObstacleManager manager;
     private float speed = 250.0f;
 
-    public Obstacle(float x, float y) {
+    public Obstacle(ObstacleManager manager, float x, float y) {
+        this.manager = manager;
         this.x = x;
         this.y = y;
     }
