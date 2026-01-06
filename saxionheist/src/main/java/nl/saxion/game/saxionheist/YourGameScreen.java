@@ -33,6 +33,11 @@ public class YourGameScreen extends ScalableGameScreen {
     public void render(float delta) {
         super.render(delta);
 
+        if (GameApp.isButtonJustPressed(Input.Buttons.LEFT)) {
+            obstacles.add(new Obstacle(1280, 300));
+        }
+
+        // Clear
         hitCooldown -= delta;
         GameApp.clearScreen();
 

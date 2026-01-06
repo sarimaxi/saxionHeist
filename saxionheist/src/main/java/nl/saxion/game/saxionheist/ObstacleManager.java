@@ -1,6 +1,8 @@
 package nl.saxion.game.saxionheist;
 
 import nl.saxion.game.saxionheist.obstaclesets.*;
+import nl.saxion.gameapp.GameApp;
+
 import java.util.ArrayList;
 
 public class ObstacleManager {
@@ -10,23 +12,29 @@ public class ObstacleManager {
             new DoubleJump(this)
     };
 
-    /** The list of all active obstacles **/
+    //The list of all active obstacles
     public ArrayList<Obstacle> obstacles;
-    /** Reference to the player **/
+
+    //Reference to the player
     public Player player;
 
     private ObstacleSet currentObstacleSet;
+
+    private float lastFloorX = -100;
+    private final float floorY = 300 - 32;
+
 
     public ObstacleManager(Player player) {
         this.obstacles = new ArrayList<>();
         this.player = player;
 
         setCurrentObstacleSet(getRandomObstacleSet());
+
+        fillFloorInitially();
     }
 
-    /**
-     * Main update loop: Handles spawning, moving, and drawing.
-     */
+    //Main update loop: Handles spawning, moving, and drawing.
+
     public void render(float delta) {
         // Pick new set if current set has finished
         if (!currentObstacleSet.isActive())
@@ -34,6 +42,8 @@ public class ObstacleManager {
 
         // Update set
         currentObstacleSet.render(delta);
+
+        updateFloor();
 
         // Iterate backwards so we can safely remove items
         for (int i = obstacles.size() - 1; i >= 0; i--) {
@@ -46,8 +56,31 @@ public class ObstacleManager {
         }
     }
 
+
+    private void fillFloorInitially() {
+        float currentX = -100;
+        while (currentX < 1400) {
+            addFloorTile(currentX);
+            currentX += 64; // Width of tile
+        }
+        lastFloorX = currentX - 64;
+    }
+
+    private void updateFloor() {
+        if (lastFloorX < 1280) {
+            lastFloorX += 64; // Move spawn point to the right
+            addFloorTile(lastFloorX);
+        }
+
+        lastFloorX -= 250.0f * GameApp.getDeltaTime();
+    }
+
+    private void addFloorTile(float x) {
+        obstacles.add(new FloorTile(x, floorY, "road"));
+    }
+
     private ObstacleSet getRandomObstacleSet() {
-        return obstacleSets[(int)(Math.random() * obstacleSets.length)];
+        return obstacleSets[(int) (Math.random() * obstacleSets.length)];
     }
 
     private void setCurrentObstacleSet(ObstacleSet newObstacleSet) {
