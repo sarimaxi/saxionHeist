@@ -29,6 +29,6 @@ public class JumpObstacle extends Obstacle {
        return GameApp.rectOverlap(
                x, y, 32, 32,
                 player.x, player.y, 32, 32
-        );
+       );
     }
 }

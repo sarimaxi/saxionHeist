@@ -9,7 +9,6 @@ public class FloorTile extends Obstacle {
 
     public FloorTile(float x, float y, String textureName) {
         super(x, y);
-
     }
 
     @Override
