@@ -14,9 +14,9 @@ public class LongJump extends ObstacleSet {
     public void start() {
         super.start();
 
-        prepareObstacle(new JumpObstacle(obstacleManager.player, GameApp.getWorldWidth(),300),0f);
-        prepareObstacle(new JumpObstacle(obstacleManager.player, GameApp.getWorldWidth(),300),0.1f);
-        prepareObstacle(new JumpObstacle(obstacleManager.player, GameApp.getWorldWidth(),300),0.2f);
-        prepareObstacle(new JumpObstacle(obstacleManager.player, GameApp.getWorldWidth(),300),0.3f);
+        prepareObstacle(new JumpObstacle(obstacleManager, GameApp.getWorldWidth(),300),0f);
+        prepareObstacle(new JumpObstacle(obstacleManager, GameApp.getWorldWidth(),300),0.1f);
+        prepareObstacle(new JumpObstacle(obstacleManager, GameApp.getWorldWidth(),300),0.2f);
+        prepareObstacle(new JumpObstacle(obstacleManager, GameApp.getWorldWidth(),300),0.3f);
     }
 }
