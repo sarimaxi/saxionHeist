@@ -1,0 +1,89 @@
+package nl.saxion.game.saxionheist;
+
+import com.badlogic.gdx.Input;
+import nl.saxion.gameapp.GameApp;
+
+public class GameOverScreen {
+
+    private boolean active = false;
+    private boolean newHighscore = false;
+    private ScoreManager score;
+    private HealthManager health;
+
+    public GameOverScreen(ScoreManager score, HealthManager health) {
+        this.score = score;
+        this.health = health;
+    }
+
+    public void show() {
+        active = true;
+        score.pause();
+
+        if (score.score > score.getHighScore()) {
+            score.setHighScore(score.score);
+            newHighscore = true;
+        }
+    }
+
+    public void render() {
+        if (!active) return;
+
+        GameApp.startSpriteRendering();
+
+        if (newHighscore) {
+            GameApp.drawTextCentered(
+                "basic",
+                "New high score: " + score.getHighScore() + "!",
+                GameApp.getWorldWidth() / 2,
+                GameApp.getWorldHeight() / 2 + 160,
+                "white"
+            );
+        }
+        else    {
+            GameApp.drawTextCentered(
+                "basic",
+                "Your score: " + score.score + " HS: " + score.getHighScore(),
+                GameApp.getWorldWidth() / 2,
+                GameApp.getWorldHeight() / 2 + 160,
+                "white"
+            );
+        }
+
+        GameApp.drawTextCentered(
+            "basic",
+            "GAME OVER",
+            GameApp.getWorldWidth() / 2,
+            GameApp.getWorldHeight() / 2 + 80,
+            "white"
+        );
+
+        GameApp.drawTextCentered(
+            "basic",
+            "Press R to Retry",
+            GameApp.getWorldWidth() / 2,
+            GameApp.getWorldHeight() / 2,
+            "white"
+        );
+
+        GameApp.endSpriteRendering();
+
+        if (GameApp.isKeyJustPressed(Input.Keys.R)) {
+            retry();
+        }
+    }
+
+    private void retry() {
+        active = false;
+        newHighscore = false;
+
+        score.reset();
+        score.resume();
+        health.reset();
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+}
+
+

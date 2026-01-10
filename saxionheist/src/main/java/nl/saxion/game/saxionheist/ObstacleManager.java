@@ -1,72 +1,96 @@
 package nl.saxion.game.saxionheist;
+
+import nl.saxion.game.saxionheist.obstaclesets.*;
+import nl.saxion.gameapp.GameApp;
+
 import java.util.ArrayList;
 
-
 public class ObstacleManager {
-    // The list of all active obstacles
-    private ArrayList<Obstacle> obstacles;
+    final private ObstacleSet[] obstacleSets = {
+            new SingleJump(this),
+            new LongJump(this),
+            new DoubleJump(this)
+    };
 
-    // Spawn
-    private float timer = 0;
-    private float nextSpawnTime = 0;
+    //The list of all active obstacles
+    public ArrayList<Obstacle> obstacles;
 
-    public ObstacleManager() {
+    //Reference to the player
+    public Player player;
+    public HealthManager health;
+
+    private ObstacleSet currentObstacleSet;
+
+    private float lastFloorX = -100;
+    private final float floorY = 300 - 32;
+
+
+    public ObstacleManager(Player player, HealthManager health) {
         this.obstacles = new ArrayList<>();
-        // one obstacle immediately
-        spawnObstacle();
-        setNextSpawnTime();
+        this.player = player;
+        this.health = health;
+
+        setCurrentObstacleSet(getRandomObstacleSet());
+
+        fillFloorInitially();
     }
 
-    /**
-     * Main update loop: Handles spawning, moving, and drawing.
-     */
+    //Main update loop: Handles spawning, moving, and drawing.
     public void render(float delta) {
+        // Pick new set if current set has finished
+        if (!currentObstacleSet.isActive())
+            setCurrentObstacleSet(getRandomObstacleSet());
 
-        timer += delta;
+        // Update set
+        currentObstacleSet.render(delta);
 
-        // If it's time to spawn
-        if (timer >= nextSpawnTime) {
-            spawnObstacle();
-            timer = 0;
-            setNextSpawnTime();
-        }
+        updateFloor();
 
         // Iterate backwards so we can safely remove items
         for (int i = obstacles.size() - 1; i >= 0; i--) {
             Obstacle obs = obstacles.get(i);
-
             obs.render(delta); // Move and Draw
 
             // Remove if off-screen (saves memory)
-            if (obs.getX() < -100) {
+            if (obs.getX() < -100)
                 obstacles.remove(i);
-            }
         }
     }
 
-    /**
-     * Logic to decide WHICH obstacle to spawn
-     */
-    private void spawnObstacle() {
-        // 50% chance for ground obstacles, 50% for flying obstacles
-        if (Math.random() < 0.5) {
-            obstacles.add(new Obstacle(1280, 300));
-        } else {
-            // Random height 300 - 500
-            float randomY = 300 + (float)(Math.random() * 200);
-            obstacles.add(new Obstacle(1280, randomY));
+
+    private void fillFloorInitially() {
+        float currentX = -100;
+        while (currentX < 1400) {
+            addFloorTile(currentX);
+            currentX += 64; // Width of tile
         }
+
+        lastFloorX = currentX - 64;
     }
 
-    /**
-     * Logic to decide WHEN to spawn next
-     */
-    private void setNextSpawnTime() {
-        nextSpawnTime = 1.0f + (float)(Math.random() * 2.0f);
+    private void updateFloor() {
+        if (lastFloorX < 1280) {
+            lastFloorX += 64; // Move spawn point to the right
+            addFloorTile(lastFloorX);
+        }
+
+        lastFloorX -= 250.0f * GameApp.getDeltaTime();
+    }
+
+    private void addFloorTile(float x) {
+        obstacles.add(new FloorTile(this, x, floorY, "road"));
+    }
+
+    private ObstacleSet getRandomObstacleSet() {
+        return obstacleSets[(int) (Math.random() * obstacleSets.length)];
+    }
+
+    private void setCurrentObstacleSet(ObstacleSet newObstacleSet) {
+        currentObstacleSet = newObstacleSet;
+        currentObstacleSet.start();
     }
 
     public ArrayList<Obstacle> getObstacles() {
         return obstacles;
     }
-
 }
