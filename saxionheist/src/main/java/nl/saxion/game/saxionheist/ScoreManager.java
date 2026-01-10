@@ -1,6 +1,5 @@
 package nl.saxion.game.saxionheist;
 
-import com.badlogic.gdx.Game;
 import nl.saxion.gameapp.GameApp;
 
 public class ScoreManager {
@@ -26,17 +25,13 @@ public class ScoreManager {
             GameApp.addFont(FONTNAME, "fonts/basic.ttf", 50);
     }
 
-    /**
-     * Dispose resources
-     **/
+    /** Dispose resources **/
     public void dispose() {
         if (GameApp.hasFont(FONTNAME))
             GameApp.disposeFont(FONTNAME);
     }
 
-    /**
-     * Update the score and draw it to the screen
-     **/
+    /** Update the score and draw it to the screen **/
     public void render(float delta) {
         delta *= (processing ? 1 : 0);
         time += delta;
@@ -53,49 +48,12 @@ public class ScoreManager {
         GameApp.endSpriteRendering();
     }
 
-    /**
-     * Get current score
-     **/
+    /** Get current score **/
     public float getScore() {
         return score;
     }
 
-    /**
-     * Get highscore
-     **/
-    public int getHighScore() {
-        SaveData data = null;
-        try {
-            data = GameApp.loadFromJson("SaveData.json", SaveData.class);
-        }
-        catch (Exception ignored) {}
-        
-        if (data != null)
-            return data.highscore;
-
-        return 0;
-    }
-
-    /**
-     * Set new highscore
-     **/
-    public void setHighScore(int value) {
-        SaveData data = null;
-        try {
-            data = GameApp.loadFromJson("SaveData.json", SaveData.class);
-        }
-        catch (Exception ignored) {}
-
-        if (data == null)
-            data = new SaveData();
-
-        data.highscore = value;
-        GameApp.saveToJson(data,"SaveData.json");
-    }
-
-    /**
-     * Reset current score
-     **/
+    /** Reset current score **/
     public void reset() {
         score = 0;
         modifier = 1f;
@@ -104,16 +62,12 @@ public class ScoreManager {
         totalTime = 0f;
     }
 
-    /**
-     * Pause score updates
-     **/
+    /** Pause score updates **/
     public void pause() {
         processing = false;
     }
 
-    /**
-     * Resume score updates
-     **/
+    /** Resume score updates **/
     public void resume() {
         processing = true;
     }

@@ -1,6 +1,3 @@
-# Project specific ignores
-SaveData.json
-
 # Based on https://github.com/github/gitignore/blob/master/Gradle.gitignore
 /saxionheist/build/
 /saxionheist/.gradle/

@@ -14,7 +14,7 @@ public class DoubleJump extends ObstacleSet {
     public void start() {
         super.start();
 
-        prepareObstacle(new JumpObstacle(obstacleManager, GameApp.getWorldWidth(),300),0f);
-        prepareObstacle(new JumpObstacle(obstacleManager, GameApp.getWorldWidth(),300),1f);
+        prepareObstacle(new JumpObstacle(obstacleManager.player, GameApp.getWorldWidth(),300),0f);
+        prepareObstacle(new JumpObstacle(obstacleManager.player, GameApp.getWorldWidth(),300),1f);
     }
 }
