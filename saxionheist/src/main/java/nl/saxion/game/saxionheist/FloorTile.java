@@ -3,13 +3,11 @@ package nl.saxion.game.saxionheist;
 import nl.saxion.gameapp.GameApp;
 
 public class FloorTile extends Obstacle {
-
     private final int width = 64;
     private final int height = 32;
 
-    public FloorTile(float x, float y, String textureName) {
-        super(x, y);
-
+    public FloorTile(ObstacleManager manager, float x, float y, String textureName) {
+        super(manager, x, y);
     }
 
     @Override
