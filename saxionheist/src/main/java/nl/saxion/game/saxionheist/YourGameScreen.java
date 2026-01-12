@@ -25,7 +25,7 @@ public class YourGameScreen extends ScalableGameScreen {
         player.y = 400;
 
         scoreManager = new ScoreManager();
-        healthManager = new HealthManager(3);
+        healthManager = new HealthManager(player.getMaxHealth());
         obstacleManager = new ObstacleManager(player, healthManager);
 
         gameOverScreen = new GameOverScreen(scoreManager, healthManager);
