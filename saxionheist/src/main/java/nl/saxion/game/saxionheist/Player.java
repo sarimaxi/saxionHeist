@@ -28,7 +28,7 @@ public class Player {
     float currentHeight = normalHeight;
 
     long slideStartTime;
-    long slideDuration = 700; // milliseconds
+    long slideDuration = 500; // milliseconds
 
     private String textureName;
     float x, y; // for the position
@@ -88,7 +88,6 @@ public class Player {
 
         // shrink
         currentHeight = slideHeight;
-        System.out.println("slidin");
 
     }
 
