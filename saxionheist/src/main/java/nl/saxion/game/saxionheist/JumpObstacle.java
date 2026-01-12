@@ -27,8 +27,10 @@ public class JumpObstacle extends Obstacle {
             manager.health.damage(1);
     }
 
-    public boolean checkCollision(Player player) {
-        return GameApp.rectOverlap(x, y, w, h, player.x, player.y, 200, player.currentHeight);
+
+   public boolean checkCollision(Player player) {
+       return GameApp.rectOverlap(x, y, 32, 32, player.x, player.y, 32, player.currentHeight);
+
     }
 }
 

@@ -28,7 +28,7 @@ public class Player {
     float currentHeight = normalHeight;
 
     long slideStartTime;
-    long slideDuration = 700; // milliseconds
+    long slideDuration = 500; // milliseconds
 
     protected int maxHealth = 3;
 
@@ -117,7 +117,6 @@ public class Player {
 
         // shrink
         currentHeight = slideHeight;
-        System.out.println("slidin");
 
     }
 
