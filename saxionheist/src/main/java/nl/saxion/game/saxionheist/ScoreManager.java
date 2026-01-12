@@ -1,6 +1,6 @@
 package nl.saxion.game.saxionheist;
 
-import com.badlogic.gdx.Game;
+import nl.saxion.game.saxionheist.data.SaveData;
 import nl.saxion.gameapp.GameApp;
 
 public class ScoreManager {

@@ -1,5 +1,6 @@
 package nl.saxion.game.saxionheist;
 
+import nl.saxion.game.saxionheist.data.TemporaryData;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
@@ -19,8 +20,9 @@ public class YourGameScreen extends ScalableGameScreen {
 
     @Override
     public void show() {
-        //player = new Player("String", 300, 400);
-        player = new AlexCharacter(300, 400);
+        player = TemporaryData.getCharacter();
+        player.x = 300;
+        player.y = 400;
 
         scoreManager = new ScoreManager();
         healthManager = new HealthManager(player.getMaxHealth());
