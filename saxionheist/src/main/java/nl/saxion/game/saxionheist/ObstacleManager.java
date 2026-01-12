@@ -22,8 +22,9 @@ public class ObstacleManager {
     private ObstacleSet currentObstacleSet;
 
     private float lastFloorX = -100;
-    private final float floorY = 300 - 32;
 
+    private final float floorTileY = Player.floorHeight - 32f;
+    private final float groundY = Player.floorHeight;
 
     public ObstacleManager(Player player, HealthManager health) {
         this.obstacles = new ArrayList<>();
@@ -57,6 +58,13 @@ public class ObstacleManager {
         }
     }
 
+    public float getGroundY() {
+        return groundY;
+    }
+
+    public float getFloorTileY() {
+        return floorTileY;
+    }
 
     private void fillFloorInitially() {
         float currentX = -100;
@@ -78,7 +86,7 @@ public class ObstacleManager {
     }
 
     private void addFloorTile(float x) {
-        obstacles.add(new FloorTile(this, x, floorY, "road"));
+        obstacles.add(new FloorTile(this, x, floorTileY, "road"));
     }
 
     private ObstacleSet getRandomObstacleSet() {
@@ -94,3 +102,4 @@ public class ObstacleManager {
         return obstacles;
     }
 }
+

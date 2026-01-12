@@ -1,27 +1,34 @@
 package nl.saxion.game.saxionheist;
 
 import nl.saxion.gameapp.GameApp;
-import nl.saxion.game.saxionheist.ObstacleManager;
-import java.awt.*;
 
 public class JumpObstacle extends Obstacle {
+
+    private static final String TEX = "bush";
+    private final float w = 70f;
+    private final float h = 200f;
+
     public JumpObstacle(ObstacleManager manager, float x, float y) {
         super(manager, x, y);
+
+        if (!GameApp.hasTexture(TEX))
+            GameApp.addTexture(TEX, "jumpObstacle/bush.png");
     }
 
     @Override
     public void render(float delta) {
-        super.render(delta);
+        x -= 250.0f * delta;
 
-        GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, 32,"red-500");
-        GameApp.endShapeRendering();
+        GameApp.startSpriteRendering();
+        GameApp.drawTexture(TEX, x, y, w, h);
+        GameApp.endSpriteRendering();
 
-       if (checkCollision(manager.player))
-           manager.health.damage(1);
+        if (checkCollision(manager.player))
+            manager.health.damage(1);
     }
 
-   public boolean checkCollision(Player player) {
-       return GameApp.rectOverlap(x, y, 32, 32, player.x, player.y, 32, 32);
+    public boolean checkCollision(Player player) {
+        return GameApp.rectOverlap(x, y, w, h, player.x, player.y, 200, player.currentHeight);
     }
 }
+
