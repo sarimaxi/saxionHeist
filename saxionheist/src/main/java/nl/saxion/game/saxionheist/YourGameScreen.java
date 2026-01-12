@@ -19,10 +19,11 @@ public class YourGameScreen extends ScalableGameScreen {
 
     @Override
     public void show() {
-        player = new Player("String", 300, 400);
+        //player = new Player("String", 300, 400);
+        player = new AlexCharacter(300, 400);
 
         scoreManager = new ScoreManager();
-        healthManager = new HealthManager(3);
+        healthManager = new HealthManager(player.getMaxHealth());
         obstacleManager = new ObstacleManager(player, healthManager);
 
         gameOverScreen = new GameOverScreen(scoreManager, healthManager);
