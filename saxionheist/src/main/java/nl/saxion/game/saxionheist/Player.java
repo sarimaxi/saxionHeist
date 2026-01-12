@@ -38,6 +38,12 @@ public class Player {
     float x, y; // for the position
     float velocityX, velocityY;
 
+    public Player() {
+        this.x = 0f;
+        this.y = 0f;
+        this.textureName = "";
+    }
+
     public Player(String textureName, float x, float y) {
         this.x = x;
         this.y = y;

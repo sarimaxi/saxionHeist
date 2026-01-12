@@ -19,14 +19,14 @@ public class MainMenuScreen extends ScalableGameScreen {
         super.render(delta);
 
         // When the user presses enter, go to the next screen
-        if (GameApp.isKeyJustPressed(Input.Keys.ENTER)) {
-            GameApp.switchScreen("YourGameScreen");
-        }
+        if (GameApp.isKeyJustPressed(Input.Keys.ENTER))
+            GameApp.switchScreen("CharacterSelectScreen");
 
         // Render the main menu
         GameApp.clearScreen("black");
         GameApp.startSpriteRendering();
-        GameApp.drawTextCentered("basic", "Start Game (press enter)", getWorldWidth() / 2, getWorldHeight() / 2, "amber-500");
+        GameApp.drawTextCentered("basic", "SaxionHeist", getWorldWidth() / 2, getWorldHeight() / 2 + 50, "amber-500");
+        GameApp.drawTextCentered("basic", "Start Game (press enter)", getWorldWidth() / 2, getWorldHeight() / 2 - 50, "amber-500");
         GameApp.endSpriteRendering();
     }
 
