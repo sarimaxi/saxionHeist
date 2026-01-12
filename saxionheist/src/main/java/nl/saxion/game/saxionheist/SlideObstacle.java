@@ -1,11 +1,9 @@
 package nl.saxion.game.saxionheist;
 
 import nl.saxion.gameapp.GameApp;
-import nl.saxion.game.saxionheist.ObstacleManager;
-import java.awt.*;
 
-public class JumpObstacle extends Obstacle {
-    public JumpObstacle(ObstacleManager manager, float x, float y) {
+public class SlideObstacle extends Obstacle {
+    public SlideObstacle(ObstacleManager manager, float x, float y) {
         super(manager, x, y);
     }
 
@@ -14,7 +12,7 @@ public class JumpObstacle extends Obstacle {
         super.render(delta);
 
         GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, 32,"red-500");
+        GameApp.drawRect(x, y, 32, 32,"green-500");
         GameApp.endShapeRendering();
 
        if (checkCollision(manager.player))

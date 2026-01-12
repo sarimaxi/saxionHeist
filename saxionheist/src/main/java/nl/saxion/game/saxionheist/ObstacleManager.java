@@ -9,7 +9,9 @@ public class ObstacleManager {
     final private ObstacleSet[] obstacleSets = {
             new SingleJump(this),
             new LongJump(this),
-            new DoubleJump(this)
+            new DoubleJump(this),
+            new SingleSlide(this),
+            new DoubleSlide(this),
     };
 
     //The list of all active obstacles
