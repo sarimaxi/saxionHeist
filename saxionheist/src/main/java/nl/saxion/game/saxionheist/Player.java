@@ -37,9 +37,10 @@ public class Player {
     public Player(String textureName, float x, float y) {
         this.x = x;
         this.y = y;
-        // GameApp.addTexture(textureName,"player.png");
-        // -----------------------------
 
+        // GameApp.addTexture(textureName,"player.png");
+        if(!GameApp.hasSound("jump"))
+            GameApp.addSound("jump", "sounds/jump.wav");
     }
 
 
@@ -111,7 +112,9 @@ public class Player {
      **/
     public void jump() {
         if (!isOnGround()) return;
+
         velocityY = jumpForce;
+        GameApp.playSound("jump");
     }
     public void hitObstacle() {
         System.out.println("Player hit obstacle");
