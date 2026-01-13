@@ -3,30 +3,42 @@ package nl.saxion.game.saxionheist;
 import nl.saxion.gameapp.GameApp;
 
 public class AlexCharacter extends Player {
+    private final String textureName = "alex_run";
+    private final String slideTextureName = "alex_slide";
 
     public AlexCharacter() {
         super();
         maxHealth = 5;
 
-        if (!GameApp.hasTexture("alex_runjump"))
-            GameApp.addTexture("alex_runjump", "alex-character/AlexandraPixel.png");
+        if (!GameApp.hasTexture(textureName))
+            GameApp.addTexture(textureName, "alex-character/AlexandraPixel.png");
 
-        if (!GameApp.hasTexture("alex_slide"))
-            GameApp.addTexture("alex_slide", "alex-character/AlexandraSlide.png");
-
-        slideTextureName = "alex_slide";
+        if (!GameApp.hasTexture(slideTextureName))
+            GameApp.addTexture(slideTextureName, "alex-character/AlexandraSlide.png");
     }
 
     public AlexCharacter(float x, float y) {
-        super("alex_runjump", x, y);
+        super(x, y);
         maxHealth = 5;
 
-        if (!GameApp.hasTexture("alex_runjump"))
-            GameApp.addTexture("alex_runjump", "alex-character/AlexandraPixel.png");
+        if (!GameApp.hasTexture(textureName))
+            GameApp.addTexture(textureName, "alex-character/AlexandraPixel.png");
 
-        if (!GameApp.hasTexture("alex_slide"))
-            GameApp.addTexture("alex_slide", "alex-character/AlexandraSlide.png");
+        if (!GameApp.hasTexture(slideTextureName))
+            GameApp.addTexture(slideTextureName, "alex-character/AlexandraSlide.png");
+    }
 
-        slideTextureName = "alex_slide";
+    @Override
+    public void render(float delta) {
+        super.render(delta);
+
+        GameApp.startSpriteRendering();
+
+        if (state == STATES.SLIDING)
+            GameApp.drawTexture(slideTextureName, x, y - 48, 200, currentHeight);
+        else
+            GameApp.drawTexture(textureName, x, y - 48, 200, currentHeight);
+
+        GameApp.endSpriteRendering();
     }
 }
