@@ -18,11 +18,6 @@ public class Obstacle {
 
     public void render(float delta) {
         x -= speed * delta;
-
-        GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, 32, Color.RED);
-        GameApp.endShapeRendering();
-
     }
 
     public float getX() {

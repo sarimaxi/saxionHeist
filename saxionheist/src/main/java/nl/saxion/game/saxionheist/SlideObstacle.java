@@ -12,10 +12,10 @@ public class SlideObstacle extends Obstacle {
         super.render(delta);
 
         GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, 32,"green-500");
+        GameApp.drawRect(x, y + 32, 32, 32,"green-500");
         GameApp.endShapeRendering();
 
-       if (checkCollision(manager.player))
+       if (checkCollision(manager.player) && !manager.player.isSliding)
            manager.health.damage(1);
     }
 

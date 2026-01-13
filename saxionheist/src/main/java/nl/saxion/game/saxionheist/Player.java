@@ -20,7 +20,7 @@ public class Player {
     /**
      * The vertical accelaration representing a jump
      **/
-    static final float jumpForce = 400f;
+    static final float jumpForce = 450f;
 
     boolean isSliding = false;
     final float normalHeight = 200f;
@@ -28,7 +28,7 @@ public class Player {
     float currentHeight = normalHeight;
 
     long slideStartTime;
-    long slideDuration = 500; // milliseconds
+    long slideDuration = 800; // milliseconds
 
     protected int maxHealth = 3;
 
