@@ -8,22 +8,19 @@ public class AlexCharacter extends Player {
 
     public AlexCharacter() {
         super();
-        maxHealth = 5;
-
-        if (!GameApp.hasTexture(textureName))
-            GameApp.addTexture(textureName, "alex-character/AlexandraPixel.png");
-
-        if (!GameApp.hasTexture(slideTextureName))
-            GameApp.addTexture(slideTextureName, "alex-character/AlexandraSlide.png");
+        setup();
     }
 
     public AlexCharacter(float x, float y) {
         super(x, y);
+        setup();
+    }
+
+    private void setup() {
         maxHealth = 5;
 
         if (!GameApp.hasTexture(textureName))
             GameApp.addTexture(textureName, "alex-character/AlexandraPixel.png");
-
         if (!GameApp.hasTexture(slideTextureName))
             GameApp.addTexture(slideTextureName, "alex-character/AlexandraSlide.png");
     }

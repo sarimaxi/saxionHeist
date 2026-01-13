@@ -5,6 +5,7 @@ import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
 public class YourGameScreen extends ScalableGameScreen {
+    TempBackground background;
 
     Player player = null;
 
@@ -20,6 +21,7 @@ public class YourGameScreen extends ScalableGameScreen {
 
     @Override
     public void show() {
+        background = new TempBackground();
         player = TemporaryData.getCharacter();
         player.x = 300;
         player.y = 400;
@@ -37,6 +39,7 @@ public class YourGameScreen extends ScalableGameScreen {
 
         // Clear
         GameApp.clearScreen();
+        background.render();
 
         if (!gameOverScreen.isActive()) {
             player.render(delta);

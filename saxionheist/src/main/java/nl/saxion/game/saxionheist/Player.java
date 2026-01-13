@@ -8,7 +8,7 @@ public class Player {
     /**
      * Defines the height the player will hit the floor at
      **/
-    static final float floorHeight = 300f;
+    static final float floorHeight = 105f;
     /**
      * The maximum falling speed
      **/
@@ -34,7 +34,7 @@ public class Player {
 
     float x, y; // for the position
     float velocityX, velocityY;
-
+    
     STATES state = STATES.AIR;
     enum STATES {
         WALKING,
