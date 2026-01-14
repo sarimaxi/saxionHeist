@@ -14,7 +14,7 @@ public class DoubleSlide extends ObstacleSet {
     public void start() {
         super.start();
 
-        prepareObstacle(new SlideObstacle(obstacleManager, GameApp.getWorldWidth(), 330), 0f);
-        prepareObstacle(new SlideObstacle(obstacleManager, GameApp.getWorldWidth(), 330), 1f);
+        prepareObstacle(new SlideObstacle(obstacleManager, GameApp.getWorldWidth(), obstacleManager.getGroundY()), 0f);
+        prepareObstacle(new SlideObstacle(obstacleManager, GameApp.getWorldWidth(), obstacleManager.getGroundY()), 1f);
     }
 }

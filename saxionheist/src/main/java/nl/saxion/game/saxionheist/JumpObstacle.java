@@ -20,7 +20,7 @@ public class JumpObstacle extends Obstacle {
         x -= 250.0f * delta;
 
         GameApp.startSpriteRendering();
-        GameApp.drawTexture(TEX, x, y, w, h);
+        GameApp.drawTexture(TEX, x, y - 72, w, h);
         GameApp.endSpriteRendering();
 
         if (checkCollision(manager.player))

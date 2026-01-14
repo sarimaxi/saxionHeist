@@ -13,6 +13,9 @@ public class GameOverScreen {
     public GameOverScreen(ScoreManager score, HealthManager health) {
         this.score = score;
         this.health = health;
+
+        if(!GameApp.hasSound("gameover"))
+            GameApp.addSound("gameover", "sounds/gameover.wav");
     }
 
     public void show() {
@@ -23,6 +26,8 @@ public class GameOverScreen {
             score.setHighScore(score.score);
             newHighscore = true;
         }
+
+        GameApp.playSound("gameover");
     }
 
     public void render() {
