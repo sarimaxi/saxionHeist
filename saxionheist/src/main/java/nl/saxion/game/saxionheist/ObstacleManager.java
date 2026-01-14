@@ -84,7 +84,7 @@ public class ObstacleManager {
             addFloorTile(lastFloorX);
         }
 
-        lastFloorX -= 250.0f * GameApp.getDeltaTime();
+        lastFloorX -= ScoreManager.currentSpeed * GameApp.getDeltaTime();
     }
 
     private void addFloorTile(float x) {
