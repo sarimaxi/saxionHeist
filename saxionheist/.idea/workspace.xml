@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="39f6e0eb-dc35-4874-b375-823eb9dec900" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/CharacterSelectScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/CharacterSelectScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/JumpObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/JumpObstacle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/SlideObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/SlideObstacle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +56,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="sprint2-dev" />
+        <entry key="$PROJECT_DIR$/.." value="sprint3-dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -62,6 +66,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="36bY1ZJMylFJkWF8O0rL3H74YcB" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -74,7 +81,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "puja-FloorTile",
+    "git-widget-placeholder": "puja-PujaCharacter",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
@@ -87,7 +94,7 @@
       <command value="gradle run" />
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

@@ -23,6 +23,7 @@ public class Player {
     static final float jumpForce = 400f;
 
     boolean isSliding = false;
+    final float width = 200f;
     float normalHeight = 200f;
     final float slideHeight = 190f;  // half size
     float currentHeight = normalHeight;
@@ -87,13 +88,13 @@ public class Player {
         GameApp.startSpriteRendering();
 
         if (isSliding && !slideTextureName.isEmpty()) {
-            GameApp.drawTexture(slideTextureName, x, y, 200, currentHeight);
+            GameApp.drawTexture(slideTextureName, x, y, width, currentHeight);
         } else if (textureName != null && !textureName.isEmpty()) {
-            GameApp.drawTexture(textureName, x, y, 200, currentHeight);
+            GameApp.drawTexture(textureName, x, y, width, currentHeight);
         } else {
             GameApp.endSpriteRendering();
             GameApp.startShapeRenderingFilled();
-            GameApp.drawRect(x, y, 200, currentHeight, "red-500");
+            GameApp.drawRect(x, y, width, currentHeight, "red-500");
             GameApp.endShapeRendering();
             return;
         }

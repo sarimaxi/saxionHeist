@@ -29,7 +29,7 @@ public class JumpObstacle extends Obstacle {
 
 
    public boolean checkCollision(Player player) {
-       return GameApp.rectOverlap(x, y, 32, 32, player.x, player.y, 32, player.currentHeight);
+       return GameApp.rectOverlap(x, y, w, h, player.x, player.y, player.width, player.currentHeight);
 
     }
 }
