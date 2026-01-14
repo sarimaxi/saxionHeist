@@ -12,14 +12,14 @@ public class SlideObstacle extends Obstacle {
         super.render(delta);
 
         GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, 32,"green-500");
+        GameApp.drawRect(x, y + 32, 32, 32,"green-500");
         GameApp.endShapeRendering();
 
-       if (checkCollision(manager.player))
+       if (checkCollision(manager.player) && !manager.player.isSliding)
            manager.health.damage(1);
     }
 
    public boolean checkCollision(Player player) {
-       return GameApp.rectOverlap(x, y, 32, 32, player.x, player.y, 32, player.currentHeight);
+       return GameApp.rectOverlap(x, y, 32, 32 * 8, player.x, player.y, 32, player.currentHeight);
     }
 }

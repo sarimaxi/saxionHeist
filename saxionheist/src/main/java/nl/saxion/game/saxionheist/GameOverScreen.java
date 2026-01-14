@@ -9,10 +9,17 @@ public class GameOverScreen {
     private boolean newHighscore = false;
     private ScoreManager score;
     private HealthManager health;
+    private Player player;
+    private ObstacleManager obstacles;
 
-    public GameOverScreen(ScoreManager score, HealthManager health) {
+    public GameOverScreen(ScoreManager score, HealthManager health, Player player, ObstacleManager obstacles) {
         this.score = score;
         this.health = health;
+        this.player = player;
+        this.obstacles = obstacles;
+
+        if(!GameApp.hasSound("gameover"))
+            GameApp.addSound("gameover", "sounds/gameover.wav");
     }
 
     public void show() {
@@ -23,6 +30,8 @@ public class GameOverScreen {
             score.setHighScore(score.score);
             newHighscore = true;
         }
+
+        GameApp.playSound("gameover");
     }
 
     public void render() {
@@ -32,37 +41,37 @@ public class GameOverScreen {
 
         if (newHighscore) {
             GameApp.drawTextCentered(
-                "basic",
-                "New high score: " + score.getHighScore() + "!",
-                GameApp.getWorldWidth() / 2,
-                GameApp.getWorldHeight() / 2 + 160,
-                "white"
+                    "basic",
+                    "New high score: " + score.getHighScore() + "!",
+                    GameApp.getWorldWidth() / 2,
+                    GameApp.getWorldHeight() / 2 + 160,
+                    "white"
             );
         }
-        else    {
+        else {
             GameApp.drawTextCentered(
-                "basic",
-                "Your score: " + score.score + " HS: " + score.getHighScore(),
-                GameApp.getWorldWidth() / 2,
-                GameApp.getWorldHeight() / 2 + 160,
-                "white"
+                    "basic",
+                    "Your score: " + score.score + " HS: " + score.getHighScore(),
+                    GameApp.getWorldWidth() / 2,
+                    GameApp.getWorldHeight() / 2 + 160,
+                    "white"
             );
         }
 
         GameApp.drawTextCentered(
-            "basic",
-            "GAME OVER",
-            GameApp.getWorldWidth() / 2,
-            GameApp.getWorldHeight() / 2 + 80,
-            "white"
+                "basic",
+                "GAME OVER",
+                GameApp.getWorldWidth() / 2,
+                GameApp.getWorldHeight() / 2 + 80,
+                "white"
         );
 
         GameApp.drawTextCentered(
-            "basic",
-            "Press R to Retry",
-            GameApp.getWorldWidth() / 2,
-            GameApp.getWorldHeight() / 2,
-            "white"
+                "basic",
+                "Press R to Retry",
+                GameApp.getWorldWidth() / 2,
+                GameApp.getWorldHeight() / 2,
+                "white"
         );
 
         GameApp.endSpriteRendering();
@@ -79,11 +88,15 @@ public class GameOverScreen {
         score.reset();
         score.resume();
         health.reset();
+
+        obstacles.reset();
+        player.resetToStart(300, Player.floorHeight);
     }
 
     public boolean isActive() {
         return active;
     }
 }
+
 
 
