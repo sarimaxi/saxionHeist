@@ -1,9 +1,11 @@
 package nl.saxion.game.saxionheist;
 
+import nl.saxion.game.saxionheist.data.TemporaryData;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
 public class YourGameScreen extends ScalableGameScreen {
+    TempBackground background;
 
     Player player = null;
 
@@ -19,10 +21,13 @@ public class YourGameScreen extends ScalableGameScreen {
 
     @Override
     public void show() {
-        player = new Player("String", 300, 400);
+        background = new TempBackground();
+        player = TemporaryData.getCharacter();
+        player.x = 300;
+        player.y = 400;
 
         scoreManager = new ScoreManager();
-        healthManager = new HealthManager(3);
+        healthManager = new HealthManager(player.getMaxHealth());
         obstacleManager = new ObstacleManager(player, healthManager);
 
         gameOverScreen = new GameOverScreen(scoreManager, healthManager);
@@ -34,6 +39,7 @@ public class YourGameScreen extends ScalableGameScreen {
 
         // Clear
         GameApp.clearScreen();
+        background.render();
 
         if (!gameOverScreen.isActive()) {
             player.render(delta);

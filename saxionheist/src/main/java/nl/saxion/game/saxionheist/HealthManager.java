@@ -18,7 +18,6 @@ public class HealthManager {
     }
 
     public void render(float delta) {
-        System.out.println(cooldown);
         if (cooldown > 0)
             cooldown -= delta;
 
