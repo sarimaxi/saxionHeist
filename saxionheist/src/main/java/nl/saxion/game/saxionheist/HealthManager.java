@@ -12,6 +12,9 @@ public class HealthManager {
     public HealthManager(int maxHealth) {
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
+
+        if(!GameApp.hasSound("hit"))
+            GameApp.addSound("hit", "sounds/hit.wav");
     }
 
     public void render(float delta) {
@@ -39,6 +42,8 @@ public class HealthManager {
 
         currentHealth = Math.clamp(currentHealth - amount, 0, Integer.MAX_VALUE);
         this.cooldown += cooldown;
+
+        GameApp.playSound("hit");
     }
 
     public void reset() {

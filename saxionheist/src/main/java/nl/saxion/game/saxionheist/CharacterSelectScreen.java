@@ -22,7 +22,7 @@ public class CharacterSelectScreen extends ScalableGameScreen {
         if (!GameApp.hasFont("basic"))
             GameApp.addFont("basic", "fonts/basic.ttf", 100);
 
-        Button.initFont();
+        Button.init();
     }
 
     @Override
@@ -69,6 +69,6 @@ public class CharacterSelectScreen extends ScalableGameScreen {
         if (GameApp.hasFont("basic"))
             GameApp.disposeFont("basic");
 
-        Button.disposeFont();
+        Button.dispose();
     }
 }

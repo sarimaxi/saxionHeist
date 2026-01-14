@@ -45,11 +45,17 @@ public class Player {
     public Player() {
         this.x = 0f;
         this.y = 0f;
+      
+        if(!GameApp.hasSound("jump"))
+            GameApp.addSound("jump", "sounds/jump.wav");
     }
 
     public Player(float x, float y) {
         this.x = x;
         this.y = y;
+      
+        if(!GameApp.hasSound("jump"))
+              GameApp.addSound("jump", "sounds/jump.wav");
     }
 
     public int getMaxHealth() {
@@ -127,7 +133,9 @@ public class Player {
      **/
     public void jump() {
         if (!isOnGround()) return;
+
         velocityY = jumpForce;
+        GameApp.playSound("jump");
     }
 
     public void hitObstacle() {
