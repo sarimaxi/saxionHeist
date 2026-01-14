@@ -30,7 +30,7 @@ public class YourGameScreen extends ScalableGameScreen {
         healthManager = new HealthManager(player.getMaxHealth());
         obstacleManager = new ObstacleManager(player, healthManager);
 
-        gameOverScreen = new GameOverScreen(scoreManager, healthManager);
+        gameOverScreen = new GameOverScreen(scoreManager, healthManager, player, obstacleManager);
     }
 
     @Override

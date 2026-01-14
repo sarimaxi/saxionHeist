@@ -14,10 +14,8 @@ public class ObstacleManager {
             new DoubleSlide(this),
     };
 
-    //The list of all active obstacles
     public ArrayList<Obstacle> obstacles;
 
-    //Reference to the player
     public Player player;
     public HealthManager health;
 
@@ -38,26 +36,32 @@ public class ObstacleManager {
         fillFloorInitially();
     }
 
-    //Main update loop: Handles spawning, moving, and drawing.
     public void render(float delta) {
-        // Pick new set if current set has finished
         if (!currentObstacleSet.isActive())
             setCurrentObstacleSet(getRandomObstacleSet());
 
-        // Update set
         currentObstacleSet.render(delta);
 
         updateFloor();
 
-        // Iterate backwards so we can safely remove items
         for (int i = obstacles.size() - 1; i >= 0; i--) {
             Obstacle obs = obstacles.get(i);
-            obs.render(delta); // Move and Draw
+            obs.render(delta);
 
-            // Remove if off-screen (saves memory)
             if (obs.getX() < -100)
                 obstacles.remove(i);
         }
+    }
+
+    public void reset() {
+        if (currentObstacleSet != null)
+            currentObstacleSet.end();
+
+        obstacles.clear();
+        lastFloorX = -100;
+
+        fillFloorInitially();
+        setCurrentObstacleSet(getRandomObstacleSet());
     }
 
     public float getGroundY() {
@@ -72,7 +76,7 @@ public class ObstacleManager {
         float currentX = -100;
         while (currentX < 1400) {
             addFloorTile(currentX);
-            currentX += 64; // Width of tile
+            currentX += 64;
         }
 
         lastFloorX = currentX - 64;
@@ -80,7 +84,7 @@ public class ObstacleManager {
 
     private void updateFloor() {
         if (lastFloorX < 1280) {
-            lastFloorX += 64; // Move spawn point to the right
+            lastFloorX += 64;
             addFloorTile(lastFloorX);
         }
 
@@ -104,4 +108,5 @@ public class ObstacleManager {
         return obstacles;
     }
 }
+
 
