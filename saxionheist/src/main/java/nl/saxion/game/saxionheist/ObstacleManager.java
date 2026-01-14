@@ -17,7 +17,6 @@ public class ObstacleManager {
 
     //Reference to the player
     public Player player;
-    public HealthManager health;
 
     private ObstacleSet currentObstacleSet;
 
@@ -25,10 +24,9 @@ public class ObstacleManager {
     private final float floorY = 300 - 32;
 
 
-    public ObstacleManager(Player player, HealthManager health) {
+    public ObstacleManager(Player player) {
         this.obstacles = new ArrayList<>();
         this.player = player;
-        this.health = health;
 
         setCurrentObstacleSet(getRandomObstacleSet());
 
@@ -36,6 +34,7 @@ public class ObstacleManager {
     }
 
     //Main update loop: Handles spawning, moving, and drawing.
+
     public void render(float delta) {
         // Pick new set if current set has finished
         if (!currentObstacleSet.isActive())
@@ -64,7 +63,6 @@ public class ObstacleManager {
             addFloorTile(currentX);
             currentX += 64; // Width of tile
         }
-
         lastFloorX = currentX - 64;
     }
 
@@ -78,7 +76,7 @@ public class ObstacleManager {
     }
 
     private void addFloorTile(float x) {
-        obstacles.add(new FloorTile(this, x, floorY, "road"));
+        obstacles.add(new FloorTile(x, floorY, "road"));
     }
 
     private ObstacleSet getRandomObstacleSet() {
@@ -89,7 +87,6 @@ public class ObstacleManager {
         currentObstacleSet = newObstacleSet;
         currentObstacleSet.start();
     }
-
     public ArrayList<Obstacle> getObstacles() {
         return obstacles;
     }
