@@ -20,6 +20,6 @@ public class SlideObstacle extends Obstacle {
     }
 
    public boolean checkCollision(Player player) {
-       return GameApp.rectOverlap(x, y, 32, 32, player.x, player.y, 32, player.currentHeight);
+       return GameApp.rectOverlap(x, y, 32, 32 * 8, player.x, player.y, 32, player.currentHeight);
     }
 }
