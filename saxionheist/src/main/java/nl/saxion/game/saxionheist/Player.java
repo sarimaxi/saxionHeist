@@ -20,38 +20,36 @@ public class Player {
     /**
      * The vertical accelaration representing a jump
      **/
-    static final float jumpForce = 400f;
+    static final float jumpForce = 450f;
 
     boolean isSliding = false;
-    float normalHeight = 200f;
+    final float normalHeight = 200f;
     final float slideHeight = 190f;  // half size
     float currentHeight = normalHeight;
 
     long slideStartTime;
-    long slideDuration = 500; // milliseconds
+    long slideDuration = 800; // milliseconds
 
     protected int maxHealth = 3;
 
-    private String textureName;
-    protected String slideTextureName = "";
-
     float x, y; // for the position
     float velocityX, velocityY;
-
-
-    public Player(String textureName, float x, float y) {
-        this.x = x;
-        this.y = y;
-        this.textureName = textureName;
-        // GameApp.addTexture(textureName,"player.png");
-        // -----------------------------
-
+    
+    STATES state = STATES.AIR;
+    enum STATES {
+        WALKING,
+        SLIDING,
+        AIR
     }
 
     public Player() {
         this.x = 0f;
         this.y = 0f;
-        this.textureName = "";
+    }
+
+    public Player(float x, float y) {
+        this.x = x;
+        this.y = y;
     }
 
     public int getMaxHealth() {
@@ -77,29 +75,14 @@ public class Player {
         y = Math.max(y + (velocityY * delta), floorHeight);
 
         // DRAW PLAYER
-        /*
-        GameApp.startShapeRenderingFilled();
-        GameApp.drawRect(x, y, 32, currentHeight, "red-500");
-        GameApp.endShapeRendering();
-
-         */
-        // DRAW PLAYER
-        GameApp.startSpriteRendering();
-
-        if (isSliding && !slideTextureName.isEmpty()) {
-            GameApp.drawTexture(slideTextureName, x, y, 200, currentHeight);
-        } else if (textureName != null && !textureName.isEmpty()) {
-            GameApp.drawTexture(textureName, x, y, 200, currentHeight);
-        } else {
-            GameApp.endSpriteRendering();
-            GameApp.startShapeRenderingFilled();
-            GameApp.drawRect(x, y, 200, currentHeight, "red-500");
-            GameApp.endShapeRendering();
-            return;
+        if (isOnGround()) {
+            if(isSliding)
+                state =  STATES.SLIDING;
+            else
+                state = STATES.WALKING;
         }
-
-        GameApp.endSpriteRendering();
-
+        else
+            state = STATES.AIR;
     }
 
     private boolean isOnGround() {
