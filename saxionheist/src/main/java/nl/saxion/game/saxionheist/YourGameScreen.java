@@ -1,5 +1,6 @@
 package nl.saxion.game.saxionheist;
 
+import com.badlogic.gdx.Game;
 import nl.saxion.game.saxionheist.data.TemporaryData;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
@@ -18,14 +19,14 @@ public class YourGameScreen extends ScalableGameScreen {
 
     // Filenames and scroll speeds for the layers
     private final String[] layerFiles = {
-            "blueSky.png",
-            "sun.png",
-            "mountainPath.png",
-            "bigClouds.png",
-            "smallClouds.png",
-            "valleyPath.png",
-            "grassField.png",
-            "bushPath.png"
+            "Assets/blueSky.png",
+            "Assets/sun.png",
+            "Assets/mountainPath.png",
+            "Assets/bigClouds.png",
+            "Assets/smallClouds.png",
+            "Assets/valleyPath.png",
+            "Assets/grassField.png",
+            "Assets/bushPath.png"
     };
     private final float[] layerSpeeds = {0.2f, 0.1f, 0.4f, 0.6f, 0.8f, 1.5f, 1.0f, 1.2f};
 
@@ -35,7 +36,6 @@ public class YourGameScreen extends ScalableGameScreen {
 
     @Override
     public void show() {
-
         player = TemporaryData.getCharacter();
         scoreManager = new ScoreManager();
         healthManager = new HealthManager(player.getMaxHealth());
@@ -56,9 +56,8 @@ public class YourGameScreen extends ScalableGameScreen {
 
         if (!gameOverScreen.isActive()) {
             // Render all background layers
-            for (ParallaxLayer layer : backgroundLayers) {
+            for (ParallaxLayer layer : backgroundLayers)
                 layer.render(delta);
-            }
 
             // Render game objects
             player.render(delta);
@@ -90,6 +89,11 @@ public class YourGameScreen extends ScalableGameScreen {
             this.filename = filename;
             this.speed = speed;
             this.xOffset = 0;
+
+            if(!GameApp.hasTexture(filename)) {
+                GameApp.addTexture(filename, filename);
+                System.out.println(filename);
+            }
         }
 
         public void render(float delta) {
@@ -100,9 +104,13 @@ public class YourGameScreen extends ScalableGameScreen {
             float worldWidth = YourGameScreen.this.getWorldWidth();
             if (xOffset <= -worldWidth) xOffset += worldWidth;
 
+            GameApp.startSpriteRendering();
+
             // Draw the texture twice for seamless scrolling
             GameApp.drawTexture(filename, xOffset, 0);
             GameApp.drawTexture(filename, xOffset + worldWidth, 0);
+
+            GameApp.endSpriteRendering();
         }
     }
 }
