@@ -37,7 +37,7 @@ public class YourGameScreen extends ScalableGameScreen {
         scoreManager = new ScoreManager();
         healthManager = new HealthManager(player.getMaxHealth());
         obstacleManager = new ObstacleManager(player, healthManager);
-        gameOverScreen = new GameOverScreen(scoreManager, healthManager);
+        gameOverScreen = new GameOverScreen(scoreManager, healthManager, player, obstacleManager);
 
         for (ParallaxLayer layer : backgroundLayers)
             layer.init();
