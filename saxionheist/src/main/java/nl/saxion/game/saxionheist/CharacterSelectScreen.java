@@ -36,7 +36,7 @@ public class CharacterSelectScreen extends ScalableGameScreen {
         }
         if (buttonNancy.isPressed(width, height)) {
             System.out.println("Selected Nancy");
-            TemporaryData.setCharacter(new Player());
+            TemporaryData.setCharacter(new NancyCharacter());
             GameApp.switchScreen("YourGameScreen");
         }
         if (buttonAlex.isPressed(width, height)) {

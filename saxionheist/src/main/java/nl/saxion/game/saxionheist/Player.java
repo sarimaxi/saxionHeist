@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
 public class Player {
-    static final float floorHeight = 105f;
+    static final float floorHeight = 48f;
     static final float maxFallSpeed = 400f;
     static final float gravity = 750f;
     static final float jumpForce = 450f;
@@ -75,18 +75,14 @@ public class Player {
             state = STATES.AIR;
     }
 
-    public void resetToStart(float startX, float startY) {
-        x = startX;
-        y = startY;
-        velocityX = 0f;
-        velocityY = 0f;
+    public void resetToStart() {
+        y = floorHeight;
         isSliding = false;
-        currentHeight = normalHeight;
-        state = STATES.WALKING;
         slideStartTime = 0;
+        currentHeight = normalHeight;
     }
 
-    private boolean isOnGround() {
+    boolean isOnGround() {
         return y <= floorHeight;
     }
 
