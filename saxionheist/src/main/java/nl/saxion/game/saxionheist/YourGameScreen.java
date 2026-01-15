@@ -1,78 +1,61 @@
 package nl.saxion.game.saxionheist;
 
-import com.badlogic.gdx.Game;
-import com.badlogic.gdx.math.Vector2;
 import nl.saxion.game.saxionheist.data.TemporaryData;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class YourGameScreen extends ScalableGameScreen {
-    Player player;
-    ScoreManager scoreManager;
-    HealthManager healthManager;
-    ObstacleManager obstacleManager;
-    GameOverScreen gameOverScreen;
+    TempBackground background;
 
-    // Filenames and scroll speeds for the layers
-    private final ParallaxLayer[] backgroundLayers = {
-            new ParallaxLayer("Assets/blueSky.png", 0.1f, 128),
-            new ParallaxLayer("Assets/sun.png", new Vector2(1024,512)), // Warcrime aha stationary layer implementation :) I just want this to be done ok?
-            new ParallaxLayer("Assets/bigClouds.png", 0.4f, 510),
-            new ParallaxLayer("Assets/bushPath.png", 0.6f, 251),
-            new ParallaxLayer("Assets/smallClouds.png", 0.8f, 510),
-            new ParallaxLayer("Assets/grassField.png", 1.0f, -192),
-            new ParallaxLayer("Assets/valleyPath.png", 1.5f)
-    };
+    Player player = null;
+
+    ScoreManager scoreManager = null;
+    HealthManager healthManager = null;
+    ObstacleManager obstacleManager = null;
+
+    GameOverScreen gameOverScreen = null;
 
     public YourGameScreen() {
-        super(1280, 720); // world width and height
+        super(1280, 720);
     }
 
     @Override
     public void show() {
+        background = new TempBackground();
         player = TemporaryData.getCharacter();
+        player.x = 300;
+        player.y = 400;
+
         scoreManager = new ScoreManager();
         healthManager = new HealthManager(player.getMaxHealth());
         obstacleManager = new ObstacleManager(player, healthManager);
-        gameOverScreen = new GameOverScreen(scoreManager, healthManager);
 
-        for (ParallaxLayer layer : backgroundLayers)
-            layer.init();
+        gameOverScreen = new GameOverScreen(scoreManager, healthManager, player, obstacleManager);
     }
 
     @Override
     public void render(float delta) {
         super.render(delta);
 
+        // Clear
         GameApp.clearScreen();
+        background.render();
 
         if (!gameOverScreen.isActive()) {
-            // Render all background layers
-            for (ParallaxLayer layer : backgroundLayers)
-                layer.render(delta);
-
-            // Render game objects
             player.render(delta);
             obstacleManager.render(delta);
             scoreManager.render(delta);
             healthManager.render(delta);
 
-            // Check for death
-            if (healthManager.isDead()) gameOverScreen.show();
+            if (healthManager.isDead())
+                gameOverScreen.show();
         }
 
-        // Render game over screen on top
         gameOverScreen.render();
     }
 
     @Override
     public void hide() {
-        // Dispose of resources
         scoreManager.dispose();
     }
-
-
 }
