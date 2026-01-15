@@ -7,6 +7,8 @@ public class NancyCharacter extends Player {
     private final String textureName = "nancy_run";
     private final String slideTextureName = "nancy_slide";
 
+    private int jumpsLeft = 2; // Nancy can jump twice before landing
+
     public NancyCharacter() {
         super();
         setup();
@@ -18,7 +20,7 @@ public class NancyCharacter extends Player {
     }
 
     private void setup() {
-        maxHealth = 3 ;
+        maxHealth = 5;
 
         if (!GameApp.hasTexture(textureName))
             GameApp.addTexture(textureName, "nancy-character/NancyPixel.png");
@@ -30,6 +32,11 @@ public class NancyCharacter extends Player {
     public void render(float delta) {
         super.render(delta);
 
+        // Reset jumps when she touches the floor
+        if (isOnGround()) {
+            jumpsLeft = 2;
+        }
+
         GameApp.startSpriteRendering();
 
         if (state == STATES.SLIDING)
@@ -39,14 +46,13 @@ public class NancyCharacter extends Player {
 
         GameApp.endSpriteRendering();
     }
+
     @Override
     public void jump() {
-        if (!isOnGround()) return;
+        if (jumpsLeft <= 0) return; // No jumps left
 
-        velocityY = jumpForce * 1.7f ;  // double the jump height
+        velocityY = jumpForce;  // Normal jump height
+        jumpsLeft--;            // Consume one jump
         GameApp.playSound("jump");
     }
-
 }
-
-
