@@ -5,7 +5,7 @@ import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
 public class Player {
-    static final float floorHeight = 105f;
+    static final float floorHeight = 48f;
     static final float maxFallSpeed = 400f;
     static final float gravity = 750f;
     static final float jumpForce = 450f;
