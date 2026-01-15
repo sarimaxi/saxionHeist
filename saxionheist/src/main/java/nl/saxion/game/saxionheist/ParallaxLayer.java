@@ -56,8 +56,8 @@ public class ParallaxLayer {
             return;
         }
 
-        x1 -= speed * delta * 150;
-        x2 -= speed * delta * 150;
+        x1 -= (ScoreManager.currentSpeed / ScoreManager.BASE_SPEED) * speed * delta * 150;
+        x2 -= (ScoreManager.currentSpeed / ScoreManager.BASE_SPEED) * speed * delta * 150;
 
         GameApp.startSpriteRendering();
 
