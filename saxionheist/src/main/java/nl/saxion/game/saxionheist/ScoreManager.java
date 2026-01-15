@@ -15,8 +15,8 @@ public class ScoreManager {
 
     static final String FONTNAME = "score-ui";
 
+    public static final float SPEED_INCREASE_PER_SECOND = 4f;
     public static final float BASE_SPEED = 250f;
-    public static final float SPEED_INCREASE_PER_SECOND = 8f;
     public static final float MAX_SPEED = 550f;
 
     public static float currentSpeed = BASE_SPEED;
