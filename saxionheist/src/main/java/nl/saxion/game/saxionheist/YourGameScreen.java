@@ -1,6 +1,7 @@
 package nl.saxion.game.saxionheist;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.math.Vector2;
 import nl.saxion.game.saxionheist.data.TemporaryData;
 import nl.saxion.gameapp.GameApp;
 import nl.saxion.gameapp.screens.ScalableGameScreen;
@@ -15,20 +16,16 @@ public class YourGameScreen extends ScalableGameScreen {
     ObstacleManager obstacleManager;
     GameOverScreen gameOverScreen;
 
-    List<ParallaxLayer> backgroundLayers = new ArrayList<>();
-
     // Filenames and scroll speeds for the layers
-    private final String[] layerFiles = {
-            "Assets/blueSky.png",
-            "Assets/sun.png",
-            "Assets/mountainPath.png",
-            "Assets/bigClouds.png",
-            "Assets/smallClouds.png",
-            "Assets/valleyPath.png",
-            "Assets/grassField.png",
-            "Assets/bushPath.png"
+    private final ParallaxLayer[] backgroundLayers = {
+            new ParallaxLayer("Assets/blueSky.png", 0.1f, 128),
+            new ParallaxLayer("Assets/sun.png", new Vector2(1024,512)), // Warcrime aha stationary layer implementation :) I just want this to be done ok?
+            new ParallaxLayer("Assets/bigClouds.png", 0.4f, 510),
+            new ParallaxLayer("Assets/bushPath.png", 0.6f, 251),
+            new ParallaxLayer("Assets/smallClouds.png", 0.8f, 510),
+            new ParallaxLayer("Assets/grassField.png", 1.0f, -192),
+            new ParallaxLayer("Assets/valleyPath.png", 1.5f)
     };
-    private final float[] layerSpeeds = {0.2f, 0.1f, 0.4f, 0.6f, 0.8f, 1.5f, 1.0f, 1.2f};
 
     public YourGameScreen() {
         super(1280, 720); // world width and height
@@ -42,10 +39,8 @@ public class YourGameScreen extends ScalableGameScreen {
         obstacleManager = new ObstacleManager(player, healthManager);
         gameOverScreen = new GameOverScreen(scoreManager, healthManager);
 
-        // Load all background layers
-        for (int i = 0; i < layerFiles.length; i++) {
-            backgroundLayers.add(new ParallaxLayer(layerFiles[i], layerSpeeds[i]));
-        }
+        for (ParallaxLayer layer : backgroundLayers)
+            layer.init();
     }
 
     @Override
@@ -79,51 +74,5 @@ public class YourGameScreen extends ScalableGameScreen {
         scoreManager.dispose();
     }
 
-    // Inner class for parallax layers
-    private class ParallaxLayer {
-        private final String filename; // resource filename
-        private final float speed;     // scroll speed// current offset
 
-        private final float scale = 4;
-
-        private float x1, x2;
-
-        public ParallaxLayer(String filename, float speed) {
-            this.filename = filename;
-            this.speed = speed;
-
-            if(!GameApp.hasTexture(filename)) {
-                GameApp.addTexture(filename, filename);
-                System.out.println(filename);
-            }
-
-            x2 = GameApp.getTextureWidth(filename) * scale;
-        }
-
-        public void render(float delta) {
-            x1 -= speed * delta * 100 * 10;
-            x2 -= speed * delta * 100 * 10;
-
-            GameApp.startSpriteRendering();
-
-            // Draw the texture twice for seamless scrolling
-            GameApp.drawTexture(filename, x1, 0, getWidth(), getHeight());
-            GameApp.drawTexture(filename, x2, 0, getWidth(), getHeight());
-
-            if (x1 <= -getWidth())
-                x1 += getWidth() * 2;
-
-            if (x2 <= -getWidth())
-                x2 += getWidth() * 2;
-
-            GameApp.endSpriteRendering();
-        }
-
-        private float getWidth() {
-            return GameApp.getTextureWidth(filename) * scale;
-        }
-        private float getHeight() {
-            return GameApp.getTextureHeight(filename) * scale;
-        }
-    }
 }
