@@ -20,6 +20,10 @@ public class GameOverScreen {
 
         if(!GameApp.hasSound("gameover"))
             GameApp.addSound("gameover", "sounds/gameover.wav");
+
+        // ✅ Make sure the font used below actually exists
+        if (!GameApp.hasFont("basic"))
+            GameApp.addFont("basic", "fonts/basic.ttf", 64);
     }
 
     public void show() {
@@ -47,8 +51,7 @@ public class GameOverScreen {
                     GameApp.getWorldHeight() / 2 + 160,
                     "white"
             );
-        }
-        else {
+        } else {
             GameApp.drawTextCentered(
                     "basic",
                     "Your score: " + score.score + " HS: " + score.getHighScore(),
@@ -89,14 +92,20 @@ public class GameOverScreen {
         score.resume();
         health.reset();
 
-        obstacles.reset();
-        player.resetToStart();
+        if (obstacles != null)
+            obstacles.reset();
+
+        if (player != null)
+            player.resetToStart();
+
+        GameApp.switchScreen("CharacterSelectScreen");
     }
 
     public boolean isActive() {
         return active;
     }
 }
+
 
 
 
