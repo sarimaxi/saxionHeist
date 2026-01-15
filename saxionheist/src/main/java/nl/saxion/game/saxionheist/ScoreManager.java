@@ -15,15 +15,15 @@ public class ScoreManager {
 
     static final String FONTNAME = "score-ui";
 
+    public static final float SPEED_INCREASE_PER_SECOND = 4f;
     public static final float BASE_SPEED = 250f;
-    public static final float SPEED_INCREASE_PER_SECOND = 8f;
     public static final float MAX_SPEED = 550f;
 
     public static float currentSpeed = BASE_SPEED;
 
     public ScoreManager() {
         if (!GameApp.hasFont(FONTNAME))
-            GameApp.addFont(FONTNAME, "fonts/basic.ttf", 50);
+            GameApp.addFont(FONTNAME, "fonts/basic.ttf", 64);
     }
 
     public void dispose() {
@@ -43,7 +43,7 @@ public class ScoreManager {
         time -= add * (1f / modifier);
 
         GameApp.startSpriteRendering();
-        GameApp.drawText(FONTNAME, "Score: " + score, 0, GameApp.getWorldHeight() - 30, "white");
+        GameApp.drawText(FONTNAME, "Score: " + score, 0, GameApp.getWorldHeight() - 30, "black");
         GameApp.endSpriteRendering();
     }
 

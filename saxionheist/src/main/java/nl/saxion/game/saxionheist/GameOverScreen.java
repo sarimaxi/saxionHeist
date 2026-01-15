@@ -90,7 +90,7 @@ public class GameOverScreen {
         health.reset();
 
         obstacles.reset();
-        player.resetToStart(300, Player.floorHeight);
+        player.resetToStart();
     }
 
     public boolean isActive() {
