@@ -39,6 +39,10 @@ public class YourGameScreen extends ScalableGameScreen {
         obstacleManager = new ObstacleManager(player, healthManager);
         gameOverScreen = new GameOverScreen(scoreManager, healthManager, player, obstacleManager);
 
+        if (!GameApp.hasMusic("music"))
+            GameApp.addMusic("music","sounds/music.wav");
+        GameApp.playMusic("music",true,0.8f);
+
         for (ParallaxLayer layer : backgroundLayers)
             layer.init();
     }
