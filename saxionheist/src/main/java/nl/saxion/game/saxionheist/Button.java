@@ -26,14 +26,20 @@ public class Button {
         this.text = text;
     }
 
-    public static void initFont() {
+    public static void init() {
         if (!GameApp.hasFont("ButtonFont"))
             GameApp.addFont("ButtonFont", "fonts/basic.ttf", 40);
+
+        if (!GameApp.hasFont("ButtonSfx"))
+            GameApp.addSound("ButtonSfx", "sounds/button.wav");
     }
 
-    public static void disposeFont() {
+    public static void dispose() {
         if (GameApp.hasFont("ButtonFont"))
             GameApp.disposeFont("ButtonFont");
+
+        if (GameApp.hasFont("ButtonSfx"))
+            GameApp.disposeSound("ButtonSfx");
     }
 
     public void render(float delta) {
@@ -54,7 +60,14 @@ public class Button {
         Vector2 mousePos = GameApp.getMousePositionInWindow();
         Vector2 mouseUV =  new Vector2(mousePos.x / GameApp.getWindowWidth(),mousePos.y /  GameApp.getWindowHeight());
 
-        return GameApp.rectOverlap(x - width / 2, y - height / 2, width, height,mouseUV.x * worldWidth - mouseMargin,mouseUV.y * worldHeight - mouseMargin,mouseMargin * 2,mouseMargin * 2) &&
-               GameApp.isButtonPressed(Input.Buttons.LEFT);
+        if (GameApp.rectOverlap(x - width / 2, y - height / 2, width, height,mouseUV.x * worldWidth - mouseMargin,mouseUV.y * worldHeight - mouseMargin,mouseMargin * 2,mouseMargin * 2) &&
+            GameApp.isButtonPressed(Input.Buttons.LEFT)) {
+
+            GameApp.playSound("ButtonSfx");
+            return true;
+        }
+
+        return false;
+
     }
 }
