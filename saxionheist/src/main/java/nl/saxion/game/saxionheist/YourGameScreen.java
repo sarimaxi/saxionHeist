@@ -82,35 +82,48 @@ public class YourGameScreen extends ScalableGameScreen {
     // Inner class for parallax layers
     private class ParallaxLayer {
         private final String filename; // resource filename
-        private final float speed;     // scroll speed
-        private float xOffset;         // current offset
+        private final float speed;     // scroll speed// current offset
+
+        private final float scale = 4;
+
+        private float x1, x2;
 
         public ParallaxLayer(String filename, float speed) {
             this.filename = filename;
             this.speed = speed;
-            this.xOffset = 0;
 
             if(!GameApp.hasTexture(filename)) {
                 GameApp.addTexture(filename, filename);
                 System.out.println(filename);
             }
+
+            x2 = GameApp.getTextureWidth(filename) * scale;
         }
 
         public void render(float delta) {
-            // Move layer
-            xOffset -= speed * delta * 100;
-
-            // Repeat using world width
-            float worldWidth = YourGameScreen.this.getWorldWidth();
-            if (xOffset <= -worldWidth) xOffset += worldWidth;
+            x1 -= speed * delta * 100 * 10;
+            x2 -= speed * delta * 100 * 10;
 
             GameApp.startSpriteRendering();
 
             // Draw the texture twice for seamless scrolling
-            GameApp.drawTexture(filename, xOffset, 0);
-            GameApp.drawTexture(filename, xOffset + worldWidth, 0);
+            GameApp.drawTexture(filename, x1, 0, getWidth(), getHeight());
+            GameApp.drawTexture(filename, x2, 0, getWidth(), getHeight());
+
+            if (x1 <= -getWidth())
+                x1 += getWidth() * 2;
+
+            if (x2 <= -getWidth())
+                x2 += getWidth() * 2;
 
             GameApp.endSpriteRendering();
+        }
+
+        private float getWidth() {
+            return GameApp.getTextureWidth(filename) * scale;
+        }
+        private float getHeight() {
+            return GameApp.getTextureHeight(filename) * scale;
         }
     }
 }
