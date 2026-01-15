@@ -18,7 +18,7 @@ public class NancyCharacter extends Player {
     }
 
     private void setup() {
-        maxHealth = 5;
+        maxHealth = 3 ;
 
         if (!GameApp.hasTexture(textureName))
             GameApp.addTexture(textureName, "nancy-character/NancyPixel.png");
@@ -39,6 +39,14 @@ public class NancyCharacter extends Player {
 
         GameApp.endSpriteRendering();
     }
+    @Override
+    public void jump() {
+        if (!isOnGround()) return;
+
+        velocityY = jumpForce * 1.7f ;  // double the jump height
+        GameApp.playSound("jump");
+    }
+
 }
 
 

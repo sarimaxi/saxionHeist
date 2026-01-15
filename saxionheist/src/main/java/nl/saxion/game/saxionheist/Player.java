@@ -85,7 +85,7 @@ public class Player {
         slideStartTime = 0;
     }
 
-    private boolean isOnGround() {
+    boolean isOnGround() {
         return y <= floorHeight;
     }
 
