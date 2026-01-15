@@ -81,7 +81,7 @@ public class Player {
         currentHeight = normalHeight;
     }
 
-    private boolean isOnGround() {
+    boolean isOnGround() {
         return y <= floorHeight;
     }
 
