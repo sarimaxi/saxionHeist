@@ -20,7 +20,7 @@ public class NancyCharacter extends Player {
     }
 
     private void setup() {
-        maxHealth = 5;
+        maxHealth = 3;
 
         if (!GameApp.hasTexture(textureName))
             GameApp.addTexture(textureName, "nancy-character/NancyPixel.png");
