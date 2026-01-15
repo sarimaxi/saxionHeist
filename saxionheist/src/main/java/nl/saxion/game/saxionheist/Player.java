@@ -74,15 +74,11 @@ public class Player {
             state = STATES.AIR;
     }
 
-    public void resetToStart(float startX, float startY) {
-        x = startX;
-        y = startY;
-        velocityX = 0f;
-        velocityY = 0f;
+    public void resetToStart() {
+        y = floorHeight;
         isSliding = false;
-        currentHeight = normalHeight;
-        state = STATES.WALKING;
         slideStartTime = 0;
+        currentHeight = normalHeight;
     }
 
     private boolean isOnGround() {
