@@ -23,7 +23,7 @@ public class ScoreManager {
 
     public ScoreManager() {
         if (!GameApp.hasFont(FONTNAME))
-            GameApp.addFont(FONTNAME, "fonts/basic.ttf", 50);
+            GameApp.addFont(FONTNAME, "fonts/basic.ttf", 64);
     }
 
     public void dispose() {
@@ -43,7 +43,7 @@ public class ScoreManager {
         time -= add * (1f / modifier);
 
         GameApp.startSpriteRendering();
-        GameApp.drawText(FONTNAME, "Score: " + score, 0, GameApp.getWorldHeight() - 30, "white");
+        GameApp.drawText(FONTNAME, "Score: " + score, 0, GameApp.getWorldHeight() - 30, "black");
         GameApp.endSpriteRendering();
     }
 

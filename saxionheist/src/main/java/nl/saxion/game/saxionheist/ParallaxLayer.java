@@ -53,8 +53,6 @@ public class ParallaxLayer {
             GameApp.startSpriteRendering();
             GameApp.drawTexture(filename, x1, y, getWidth(), getHeight());
             GameApp.endSpriteRendering();
-
-            System.out.println(x1 + " " + y);
             return;
         }
 
