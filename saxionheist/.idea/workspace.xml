@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="39f6e0eb-dc35-4874-b375-823eb9dec900" name="Changes" comment="Add addTexture to load textures to memory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/CharacterSelectScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/CharacterSelectScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/JumpObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/JumpObstacle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/SlideObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/SlideObstacle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/puja-character/puja-bend.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/puja-character/puja-bend.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +72,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build saxionheist.executor": "Run",
     "Gradle.saxionheist [:nl.saxion.game.Main.main()].executor": "Run",
     "Gradle.saxionheist [run].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
