@@ -43,7 +43,6 @@ public class CharacterSelectScreen extends ScalableGameScreen {
             System.out.println("Selected Alex");
             TemporaryData.setCharacter(new AlexCharacter()); // Change to Alex character
             GameApp.switchScreen("YourGameScreen");
-
         }
 
         // When the user presses enter, go to the next screen

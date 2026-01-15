@@ -12,7 +12,6 @@ public class Player {
 
     boolean isSliding = false;
     final float width = 200f;
-    float normalHeight = 200f;
     final float normalHeight = 200f;
     final float slideHeight = 190f;
     float currentHeight = normalHeight;

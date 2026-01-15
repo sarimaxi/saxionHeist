@@ -3,19 +3,40 @@ package nl.saxion.game.saxionheist;
 import nl.saxion.gameapp.GameApp;
 
 public class PujaCharacter extends Player {
+    private final String textureName = "puja_runjump";
+    private final String slideTextureName = "puja_slide";
 
     public PujaCharacter() {
-        super("puja_runjump", 0, 0);
+        super();
+        setup();
+    }
 
+    public PujaCharacter(float x, float y) {
+        super(x, y);
+        setup();
+    }
+
+    public void setup() {
         maxHealth = 5;
 
-        if (!GameApp.hasTexture("puja_runjump"))
-            GameApp.addTexture("puja_runjump", "puja-character/puja-run.png");
+        if (!GameApp.hasTexture(textureName))
+            GameApp.addTexture(textureName, "puja-character/puja-run.png");
+        if (!GameApp.hasTexture(slideTextureName))
+            GameApp.addTexture(slideTextureName, "puja-character/puja-bend.png");
+    }
 
-        if (!GameApp.hasTexture("puja_slide"))
-            GameApp.addTexture("puja_slide", "puja-character/puja-bend.png");
+    @Override
+    public void render(float delta) {
+        super.render(delta);
 
-        slideTextureName = "puja_slide";
+        GameApp.startSpriteRendering();
+
+        if (state == STATES.SLIDING)
+            GameApp.drawTexture(slideTextureName, x, y - 48, width, currentHeight);
+        else
+            GameApp.drawTexture(textureName, x, y - 48, width, currentHeight);
+
+        GameApp.endSpriteRendering();
     }
 }
 
