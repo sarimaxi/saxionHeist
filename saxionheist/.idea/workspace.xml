@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="39f6e0eb-dc35-4874-b375-823eb9dec900" name="Changes" comment="Add addTexture to load textures to memory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/JumpObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/JumpObstacle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/PujaCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/PujaCharacter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/SlideObstacle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/saxion/game/saxionheist/SlideObstacle.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +57,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="fix-alexcharacter" />
+        <entry key="$PROJECT_DIR$/.." value="sprint3-dev" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -71,13 +76,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build saxionheist.executor": "Run",
     "Gradle.saxionheist [:nl.saxion.game.Main.main()].executor": "Run",
     "Gradle.saxionheist [run].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "scrolling-background",
+    "git-widget-placeholder": "puja-PujaCharacter",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
