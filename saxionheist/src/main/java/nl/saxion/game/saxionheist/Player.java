@@ -66,13 +66,14 @@ public class Player {
         y = Math.max(y + (velocityY * delta), floorHeight);
 
         if (isOnGround()) {
-            if(isSliding)
-                state =  STATES.SLIDING;
+            if (isSliding)
+                state = STATES.SLIDING;
             else
                 state = STATES.WALKING;
-        }
-        else
+        } else
             state = STATES.AIR;
+    }
+
 
     public void resetToStart(float startX, float startY) {
         x = startX;
