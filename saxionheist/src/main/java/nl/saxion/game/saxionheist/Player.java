@@ -34,6 +34,7 @@ public class Player {
     public Player() {
         this.x = 0f;
         this.y = 0f;
+        ScoreManager.speedIncrease = ScoreManager.BASE_INCREASE_PER_SECOND;
 
         if(!GameApp.hasSound("jump"))
             GameApp.addSound("jump", "sounds/jump.wav");
@@ -42,6 +43,7 @@ public class Player {
     public Player(float x, float y) {
         this.x = x;
         this.y = y;
+        ScoreManager.speedIncrease = ScoreManager.BASE_INCREASE_PER_SECOND;
 
         if(!GameApp.hasSound("jump"))
             GameApp.addSound("jump", "sounds/jump.wav");
