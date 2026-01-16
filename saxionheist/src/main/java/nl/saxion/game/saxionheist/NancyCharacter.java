@@ -40,9 +40,9 @@ public class NancyCharacter extends Player {
         GameApp.startSpriteRendering();
 
         if (state == STATES.SLIDING)
-            GameApp.drawTexture(slideTextureName, x, y - 48, 200, currentHeight);
+            GameApp.drawTexture(slideTextureName, x, y - 35, 200, currentHeight);
         else
-            GameApp.drawTexture(textureName, x, y - 48, 200, currentHeight);
+            GameApp.drawTexture(textureName, x, y - 35, 200, currentHeight);
 
         GameApp.endSpriteRendering();
     }
