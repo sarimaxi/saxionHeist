@@ -15,10 +15,11 @@ public class ScoreManager {
 
     static final String FONTNAME = "score-ui";
 
-    public static final float SPEED_INCREASE_PER_SECOND = 4f;
+    public static final float BASE_INCREASE_PER_SECOND = 4f;
     public static final float BASE_SPEED = 250f;
-    public static final float MAX_SPEED = 550f;
+    public static final float MAX_SPEED = 800f;
 
+    public static float speedIncrease = BASE_INCREASE_PER_SECOND;
     public static float currentSpeed = BASE_SPEED;
 
     public ScoreManager() {
@@ -36,7 +37,7 @@ public class ScoreManager {
         time += delta;
         totalTime += delta;
 
-        currentSpeed = Math.min(BASE_SPEED + totalTime * SPEED_INCREASE_PER_SECOND, MAX_SPEED);
+        currentSpeed = Math.min(BASE_SPEED + totalTime * speedIncrease, MAX_SPEED);
 
         int add = (int) Math.floor(time / (1f / modifier));
         score += add;

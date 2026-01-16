@@ -22,6 +22,7 @@ public class PujaCharacter extends Player {
 
     public void setup() {
         maxHealth = 3;
+        ScoreManager.speedIncrease = ScoreManager.BASE_INCREASE_PER_SECOND * 2;
 
         if (!GameApp.hasTexture(textureName))
             GameApp.addTexture(textureName, "puja-character/puja-run.png");
