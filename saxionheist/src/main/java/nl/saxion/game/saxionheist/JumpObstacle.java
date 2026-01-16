@@ -24,7 +24,10 @@ public class JumpObstacle extends Obstacle {
         GameApp.endSpriteRendering();
 
         if (checkCollision(manager.player))
-            manager.health.damage(1);
+            if (!manager.player.isDashing()) {
+                manager.health.damage(1);
+            }
+
     }
 
 

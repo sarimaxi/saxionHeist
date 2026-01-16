@@ -73,7 +73,6 @@ public class Player {
         }
         else
             state = STATES.AIR;
-    }
 
     public void resetToStart(float startX, float startY) {
         x = startX;
@@ -121,6 +120,7 @@ public class Player {
         velocityY = jumpForce;
         GameApp.playSound("jump");
     }
+
 
     public void hitObstacle() {
         System.out.println("Player hit obstacle");

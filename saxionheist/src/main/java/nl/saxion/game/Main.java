@@ -12,7 +12,7 @@ public class Main {
         GameApp.addScreen("CharacterSelectScreen", new CharacterSelectScreen());
         GameApp.addScreen("YourGameScreen", new YourGameScreen());
 
-        // Start game loop and show main menu screen
+         // Start game loop and show main menu screen
         GameApp.start("SaxionHeist", 800, 450, 60, false, "MainMenuScreen");
     }
 }

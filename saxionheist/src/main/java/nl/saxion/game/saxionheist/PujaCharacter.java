@@ -6,6 +6,7 @@ public class PujaCharacter extends Player {
     private final String textureName = "puja_runjump";
     private final String slideTextureName = "puja_slide";
 
+    private final String dashTextureName = "puja_dash";
     public PujaCharacter() {
         super();
         setup();
@@ -23,6 +24,7 @@ public class PujaCharacter extends Player {
             GameApp.addTexture(textureName, "puja-character/puja-run.png");
         if (!GameApp.hasTexture(slideTextureName))
             GameApp.addTexture(slideTextureName, "puja-character/puja-bend.png");
+
     }
 
     @Override
@@ -31,10 +33,13 @@ public class PujaCharacter extends Player {
 
         GameApp.startSpriteRendering();
 
-        if (state == STATES.SLIDING)
-            GameApp.drawTexture(slideTextureName, x, y - 48, width, currentHeight);
-        else
-            GameApp.drawTexture(textureName, x, y - 48, width, currentHeight);
+
+        if (state == STATES.SLIDING) {
+            GameApp.drawTexture(slideTextureName, x, y - 35, width, currentHeight);
+        }
+        else {
+            GameApp.drawTexture(textureName, x, y - 35, width, currentHeight);
+        }
 
         GameApp.endSpriteRendering();
     }
