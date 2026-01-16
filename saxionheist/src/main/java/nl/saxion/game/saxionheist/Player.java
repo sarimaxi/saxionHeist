@@ -11,6 +11,7 @@ public class Player {
     static final float jumpForce = 450f;
 
     boolean isSliding = false;
+    final float width = 200f;
     final float normalHeight = 200f;
     final float slideHeight = 190f;
     float currentHeight = normalHeight;
@@ -65,12 +66,11 @@ public class Player {
         y = Math.max(y + (velocityY * delta), floorHeight);
 
         if (isOnGround()) {
-            if(isSliding)
-                state =  STATES.SLIDING;
+            if (isSliding)
+                state = STATES.SLIDING;
             else
                 state = STATES.WALKING;
-        }
-        else
+        } else
             state = STATES.AIR;
     }
 
@@ -116,6 +116,7 @@ public class Player {
         velocityY = jumpForce;
         GameApp.playSound("jump");
     }
+
 
     public void hitObstacle() {
         System.out.println("Player hit obstacle");
