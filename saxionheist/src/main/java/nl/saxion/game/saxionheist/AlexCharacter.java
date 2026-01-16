@@ -6,6 +6,9 @@ public class AlexCharacter extends Player {
     private final String textureName = "alex_run";
     private final String slideTextureName = "alex_slide";
 
+    public float redness = 0f;
+    public float blink = 0f;
+
     public AlexCharacter() {
         super();
         setup();
@@ -30,12 +33,14 @@ public class AlexCharacter extends Player {
         super.render(delta);
 
         GameApp.startSpriteRendering();
+        GameApp.enableTransparency();
 
         if (state == STATES.SLIDING)
-            GameApp.drawTexture(slideTextureName, x, y - 35, 200, currentHeight);
+            draw(slideTextureName, 1f, 1f - 0.8f * redness, 1f - 0.8f * redness, 1f - blink);
         else
-            GameApp.drawTexture(textureName, x, y - 35, 200, currentHeight);
+            draw(textureName, 1f, 1f - 0.8f * redness, 1f - 0.8f * redness, 1f - blink);
 
+        GameApp.disableTransparency();
         GameApp.endSpriteRendering();
     }
 }
