@@ -1,6 +1,5 @@
 package nl.saxion.game.saxionheist;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Input;
 import nl.saxion.gameapp.GameApp;
 
@@ -15,6 +14,7 @@ public class Player {
     final float normalHeight = 200f;
     final float slideHeight = 190f;
     float currentHeight = normalHeight;
+    float currentWidth = 200f;
 
     long slideStartTime;
     long slideDuration = 800;
@@ -47,10 +47,6 @@ public class Player {
             GameApp.addSound("jump", "sounds/jump.wav");
     }
 
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
     public void render(float delta) {
         if (GameApp.isKeyJustPressed(Input.Keys.SPACE))
             jump();
@@ -74,15 +70,13 @@ public class Player {
             state = STATES.AIR;
     }
 
-    public void resetToStart() {
-        y = floorHeight;
-        isSliding = false;
-        slideStartTime = 0;
-        currentHeight = normalHeight;
+    public void draw(String texture) {
+        draw(texture, 1, 1, 1, 1);
     }
-
-    boolean isOnGround() {
-        return y <= floorHeight;
+    public void draw(String texture, float r, float g, float b, float a) {
+        GameApp.getSpriteBatch().setColor(r, g, b, a);
+        GameApp.getSpriteBatch().draw(GameApp.getTexture(texture), x, y - 35, currentWidth, currentHeight);
+        GameApp.getSpriteBatch().setColor(1,1,1,1);
     }
 
     private void startSlide() {
@@ -117,6 +111,20 @@ public class Player {
         GameApp.playSound("jump");
     }
 
+    public void resetToStart() {
+        y = floorHeight;
+        isSliding = false;
+        slideStartTime = 0;
+        currentHeight = normalHeight;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    boolean isOnGround() {
+        return y <= floorHeight;
+    }
 
     public void hitObstacle() {
         System.out.println("Player hit obstacle");

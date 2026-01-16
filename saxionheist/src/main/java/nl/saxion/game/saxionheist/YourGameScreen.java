@@ -35,7 +35,7 @@ public class YourGameScreen extends ScalableGameScreen {
     public void show() {
         player = TemporaryData.getCharacter();
         scoreManager = new ScoreManager();
-        healthManager = new HealthManager(player.getMaxHealth());
+        healthManager = new HealthManager(player);
         obstacleManager = new ObstacleManager(player, healthManager);
         gameOverScreen = new GameOverScreen(scoreManager, healthManager, player, obstacleManager);
 
@@ -76,6 +76,13 @@ public class YourGameScreen extends ScalableGameScreen {
     public void hide() {
         // Dispose of resources
         scoreManager.dispose();
+
+        GameApp.stopAllMusic();
+        if (GameApp.hasMusic("music"))
+            GameApp.disposeMusic("music");
+
+        for (ParallaxLayer layer : backgroundLayers)
+            layer.dispose();
     }
 
 

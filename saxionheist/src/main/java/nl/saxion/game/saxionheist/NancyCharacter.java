@@ -9,6 +9,9 @@ public class NancyCharacter extends Player {
 
     private int jumpsLeft = 2; // Nancy can jump twice before landing
 
+    public float redness = 0f;
+    public float blink = 0f;
+
     public NancyCharacter() {
         super();
         setup();
@@ -40,9 +43,9 @@ public class NancyCharacter extends Player {
         GameApp.startSpriteRendering();
 
         if (state == STATES.SLIDING)
-            GameApp.drawTexture(slideTextureName, x, y - 35, 200, currentHeight);
+            draw(slideTextureName, 1f, 1f - 0.8f * redness, 1f - 0.8f * redness, 1f - blink);
         else
-            GameApp.drawTexture(textureName, x, y - 35, 200, currentHeight);
+            draw(textureName, 1f, 1f - 0.8f * redness, 1f - 0.8f * redness, 1f - blink);
 
         GameApp.endSpriteRendering();
     }
