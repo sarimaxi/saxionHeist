@@ -24,11 +24,11 @@ public class JumpObstacle extends Obstacle {
         GameApp.endSpriteRendering();
 
         if (checkCollision(manager.player))
-            manager.health.damage(1);
+            manager.health.damage(1, 2);
     }
 
 
    public boolean checkCollision(Player player) {
-        return GameApp.rectOverlap(x, y, w, h, player.x, player.y, player.width, player.currentHeight);
+        return GameApp.rectOverlap(x, y, 32, 32, player.x, player.y, 48, player.currentHeight);
     }
 }
