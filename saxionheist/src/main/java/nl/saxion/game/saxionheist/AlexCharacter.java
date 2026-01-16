@@ -32,9 +32,9 @@ public class AlexCharacter extends Player {
         GameApp.startSpriteRendering();
 
         if (state == STATES.SLIDING)
-            GameApp.drawTexture(slideTextureName, x, y - 48, width, currentHeight);
+            GameApp.drawTexture(slideTextureName, x, y - 35, 200, currentHeight);
         else
-            GameApp.drawTexture(textureName, x, y - 48, width, currentHeight);
+            GameApp.drawTexture(textureName, x, y - 35, 200, currentHeight);
 
         GameApp.endSpriteRendering();
     }
